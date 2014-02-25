@@ -13,6 +13,8 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
+    self.infoEngine = [[getInfoEngine alloc] initWithHostName:@"ws.buscarsalud.local"];
+    
     return YES;
 }
 							
