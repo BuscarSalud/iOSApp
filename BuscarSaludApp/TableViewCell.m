@@ -9,6 +9,7 @@
 #import "TableViewCell.h"
 #import "UIView+AutoLayout.h"
 #import "UIView+FLKAutoLayout.h"
+#import <QuartzCore/QuartzCore.h>
 
 @interface TableViewCell()
 
@@ -29,6 +30,14 @@
         
         self.cellBackground = [UIView newAutoLayoutView];
         self.cellBackground.layer.cornerRadius = 10;
+        self.cellBackground.layer.borderColor = [UIColor colorWithRed:204.0/255.0 green:208.0/255.0 blue:201.0/255 alpha:1].CGColor;
+        self.cellBackground.layer.borderWidth = 0.8f;
+        self.cellBackground.layer.shadowColor = [UIColor colorWithRed:204.0/255.0 green:208.0/255.0 blue:201.0/255 alpha:1].CGColor;
+        self.cellBackground.layer.shadowOffset = CGSizeMake(0.0, 10.0);
+        //self.cellBackground.layer.shadowOpacity = 1.0;
+        //self.cellBackground.layer.shadowRadius = 20.0;
+        
+        
         [self.cellBackground setBackgroundColor:[UIColor colorWithRed:245.0/255 green:247.0/255.0 blue:242.0/255 alpha:1]];
         
         
