@@ -13,7 +13,19 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
-    self.infoEngine = [[getInfoEngine alloc] initWithHostName:@"ws.buscarsalud.local"];
+    self.infoEngine = [[getInfoEngine alloc] initWithHostName:@"ws.buscarsalud.com"];
+    
+    if (floor(NSFoundationVersionNumber) <= NSFoundationVersionNumber_iOS_6_1) {
+        NSLog(@"Load resources for iOS 6.1 or earlier");
+    } else {
+        [[UINavigationBar appearance] setBarTintColor:[UIColor colorWithRed:97.0/255.0 green:155.0/255.0 blue:21.0/255.0 alpha:1]];
+        [[UINavigationBar appearance] setTitleTextAttributes: [NSDictionary dictionaryWithObjectsAndKeys:
+                                                               [UIColor colorWithRed:255.0 green:255.0 blue:255.0 alpha:1.0], NSForegroundColorAttributeName,                                                               
+                                                               [UIFont fontWithName:@"SourceSansPro-Regular" size:24], NSFontAttributeName, nil]];
+        [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
+
+        NSLog(@"Load resources for iOS 7 or later");
+    }
     
     return YES;
 }

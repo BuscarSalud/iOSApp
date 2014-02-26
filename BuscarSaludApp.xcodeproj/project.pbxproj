@@ -25,6 +25,9 @@
 		02A70B6E18B71170009C4CDE /* BrowserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 02A70B6D18B71170009C4CDE /* BrowserViewController.m */; };
 		02A70B7018B72075009C4CDE /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 02A70B6F18B72075009C4CDE /* MapKit.framework */; };
 		02A70B7418B72975009C4CDE /* getInfoEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = 02A70B7318B72975009C4CDE /* getInfoEngine.m */; };
+		02E0983218BD983300DF64F7 /* FLKAutoLayoutPredicateList.m in Sources */ = {isa = PBXBuildFile; fileRef = 02E0982D18BD983300DF64F7 /* FLKAutoLayoutPredicateList.m */; };
+		02E0983318BD983300DF64F7 /* UIView+FLKAutoLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 02E0982F18BD983300DF64F7 /* UIView+FLKAutoLayout.m */; };
+		02E0983418BD983300DF64F7 /* UIView+FLKAutoLayoutPredicate.m in Sources */ = {isa = PBXBuildFile; fileRef = 02E0983118BD983300DF64F7 /* UIView+FLKAutoLayoutPredicate.m */; };
 		02F5AEFE18BC2C2F00E5AE3B /* TableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 02F5AEFD18BC2C2F00E5AE3B /* TableViewCell.m */; };
 		02F5AF0118BC528D00E5AE3B /* SourceSansPro-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 02F5AF0018BC528D00E5AE3B /* SourceSansPro-Regular.ttf */; };
 		7A0D7C04568D47B4A3E9581E /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 56E0A1FF1BB04BD9A6224959 /* libPods.a */; };
@@ -66,6 +69,14 @@
 		02A70B6F18B72075009C4CDE /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		02A70B7218B72975009C4CDE /* getInfoEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = getInfoEngine.h; sourceTree = "<group>"; };
 		02A70B7318B72975009C4CDE /* getInfoEngine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = getInfoEngine.m; sourceTree = "<group>"; };
+		02E0982C18BD983300DF64F7 /* FLKAutoLayoutPredicateList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FLKAutoLayoutPredicateList.h; path = "../../Stuff/FLKAutoLayout-master/FLKAutoLayout/FLKAutoLayoutPredicateList.h"; sourceTree = "<group>"; };
+		02E0982D18BD983300DF64F7 /* FLKAutoLayoutPredicateList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FLKAutoLayoutPredicateList.m; path = "../../Stuff/FLKAutoLayout-master/FLKAutoLayout/FLKAutoLayoutPredicateList.m"; sourceTree = "<group>"; };
+		02E0982E18BD983300DF64F7 /* UIView+FLKAutoLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIView+FLKAutoLayout.h"; path = "../../Stuff/FLKAutoLayout-master/FLKAutoLayout/UIView+FLKAutoLayout.h"; sourceTree = "<group>"; };
+		02E0982F18BD983300DF64F7 /* UIView+FLKAutoLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIView+FLKAutoLayout.m"; path = "../../Stuff/FLKAutoLayout-master/FLKAutoLayout/UIView+FLKAutoLayout.m"; sourceTree = "<group>"; };
+		02E0983018BD983300DF64F7 /* UIView+FLKAutoLayoutPredicate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIView+FLKAutoLayoutPredicate.h"; path = "../../Stuff/FLKAutoLayout-master/FLKAutoLayout/UIView+FLKAutoLayoutPredicate.h"; sourceTree = "<group>"; };
+		02E0983118BD983300DF64F7 /* UIView+FLKAutoLayoutPredicate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIView+FLKAutoLayoutPredicate.m"; path = "../../Stuff/FLKAutoLayout-master/FLKAutoLayout/UIView+FLKAutoLayoutPredicate.m"; sourceTree = "<group>"; };
+		02E0983518BDB76600DF64F7 /* SourceSansPro-Semibold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "SourceSansPro-Semibold.ttf"; path = "../../Stuff/Source_Sans_Pro/SourceSansPro-Semibold.ttf"; sourceTree = "<group>"; };
+		02E0983618BDB79B00DF64F7 /* SourceSansPro-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SourceSansPro-Bold.ttf"; sourceTree = "<group>"; };
 		02F5AEFC18BC2C2F00E5AE3B /* TableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TableViewCell.h; sourceTree = "<group>"; };
 		02F5AEFD18BC2C2F00E5AE3B /* TableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TableViewCell.m; sourceTree = "<group>"; };
 		02F5AF0018BC528D00E5AE3B /* SourceSansPro-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "SourceSansPro-Regular.ttf"; path = "../../Stuff/Source_Sans_Pro/SourceSansPro-Regular.ttf"; sourceTree = "<group>"; };
@@ -156,6 +167,7 @@
 		021129AE18B301320099F31F /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				02E0982B18BD981A00DF64F7 /* FLKAutoLayout */,
 				02F5AEFF18BC526000E5AE3B /* Fonts */,
 				021129AF18B301320099F31F /* BuscarSaludApp-Info.plist */,
 				021129B018B301320099F31F /* InfoPlist.strings */,
@@ -192,9 +204,24 @@
 			name = NetworkEngine;
 			sourceTree = "<group>";
 		};
+		02E0982B18BD981A00DF64F7 /* FLKAutoLayout */ = {
+			isa = PBXGroup;
+			children = (
+				02E0982C18BD983300DF64F7 /* FLKAutoLayoutPredicateList.h */,
+				02E0982D18BD983300DF64F7 /* FLKAutoLayoutPredicateList.m */,
+				02E0982E18BD983300DF64F7 /* UIView+FLKAutoLayout.h */,
+				02E0982F18BD983300DF64F7 /* UIView+FLKAutoLayout.m */,
+				02E0983018BD983300DF64F7 /* UIView+FLKAutoLayoutPredicate.h */,
+				02E0983118BD983300DF64F7 /* UIView+FLKAutoLayoutPredicate.m */,
+			);
+			name = FLKAutoLayout;
+			sourceTree = "<group>";
+		};
 		02F5AEFF18BC526000E5AE3B /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
+				02E0983618BDB79B00DF64F7 /* SourceSansPro-Bold.ttf */,
+				02E0983518BDB76600DF64F7 /* SourceSansPro-Semibold.ttf */,
 				02F5AF0018BC528D00E5AE3B /* SourceSansPro-Regular.ttf */,
 			);
 			name = Fonts;
@@ -334,7 +361,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				021129C118B301320099F31F /* SecondViewController.m in Sources */,
+				02E0983318BD983300DF64F7 /* UIView+FLKAutoLayout.m in Sources */,
+				02E0983218BD983300DF64F7 /* FLKAutoLayoutPredicateList.m in Sources */,
 				02F5AEFE18BC2C2F00E5AE3B /* TableViewCell.m in Sources */,
+				02E0983418BD983300DF64F7 /* UIView+FLKAutoLayoutPredicate.m in Sources */,
 				02A70B6E18B71170009C4CDE /* BrowserViewController.m in Sources */,
 				02A70B7418B72975009C4CDE /* getInfoEngine.m in Sources */,
 				021129B818B301320099F31F /* AppDelegate.m in Sources */,

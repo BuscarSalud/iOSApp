@@ -22,7 +22,13 @@
 @property (strong, nonatomic) IBOutlet UILabel *phonelabel;
 @property (strong, nonatomic) IBOutlet UILabel *addressLabel;
 @property (strong, nonatomic) IBOutlet UILabel *schoolLabel;
-@property (strong, nonatomic) IBOutlet UIView *cellContainer;
+@property (strong, nonatomic) IBOutlet UILabel *streetLabel;
+@property (strong, nonatomic) IBOutlet UILabel *coloniaLabel;
+@property (strong, nonatomic) IBOutlet UILabel *titleLabel;
+@property (strong, nonatomic) IBOutlet UILabel *cityLabel; 
+@property (strong, nonatomic) IBOutlet UIView *cellBackground;
+@property (strong, nonatomic) IBOutlet UIView *photoContainer;
+@property (strong, nonatomic) IBOutlet UIImageView *photoImageView;
 
 
 - (void)updateFonts;

@@ -46,8 +46,9 @@ static NSString *CellIdentifier = @"CellIdentifier";
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     
-    //self.view.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-    //self.tableView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+    
+    self.view.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+    self.tableView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     [self.tableView registerClass:[TableViewCell class] forCellReuseIdentifier:CellIdentifier];
     
     
@@ -62,15 +63,26 @@ static NSString *CellIdentifier = @"CellIdentifier";
     
 }
 
--(void)viewDidAppear:(BOOL)animated
+- (void)viewDidAppear:(BOOL)animated
 {
+    [super viewDidAppear:animated];
     //[self animateNavigationBar];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(contentSizeCategoryChanged:)
+                                                 name:UIContentSizeCategoryDidChangeNotification
+                                               object:nil];
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)contentSizeCategoryChanged:(NSNotification *)notification
+{
+    [self.tableView reloadData];
 }
 
 #pragma mark - Get Current Location
@@ -169,6 +181,12 @@ static NSString *CellIdentifier = @"CellIdentifier";
     [cell updateFonts];
     
     cell.nameLabel.text = [[doctorsList objectForKey:doctor] objectForKey:@"nombre"];
+    cell.phonelabel.text = [[doctorsList objectForKey:doctor] objectForKey:@"telefono"];
+    cell.streetLabel.text = [[doctorsList objectForKey:doctor] objectForKey:@"calle"];
+    cell.coloniaLabel.text = [[doctorsList objectForKey:doctor] objectForKey:@"colonia"];
+    cell.cityLabel.text = [[doctorsList objectForKey:doctor] objectForKey:@"ciudad"];
+    cell.titleLabel.text = [[doctorsList objectForKey:doctor] objectForKey:@"titulo"];
+    cell.schoolLabel.text = [[doctorsList objectForKey:doctor] objectForKey:@"escuela"];
     
     
     NSString *summaryText = [[doctorsList objectForKey:doctor] objectForKey:@"extracto"];
@@ -192,7 +210,12 @@ static NSString *CellIdentifier = @"CellIdentifier";
     [cell updateFonts];
     
     cell.nameLabel.text = [[doctorsList objectForKey:doctor] objectForKey:@"nombre"];
-    
+    cell.phonelabel.text = [[doctorsList objectForKey:doctor] objectForKey:@"telefono"];
+    cell.streetLabel.text = [[doctorsList objectForKey:doctor] objectForKey:@"calle"];
+    cell.coloniaLabel.text = [[doctorsList objectForKey:doctor] objectForKey:@"colonia"];
+    cell.cityLabel.text = [[doctorsList objectForKey:doctor] objectForKey:@"ciudad"];
+    cell.titleLabel.text = [[doctorsList objectForKey:doctor] objectForKey:@"titulo"];
+    cell.schoolLabel.text = [[doctorsList objectForKey:doctor] objectForKey:@"escuela"];
     
     NSString *summaryText = [[doctorsList objectForKey:doctor] objectForKey:@"extracto"];
     NSMutableAttributedString *bodyAttributedText = [[NSMutableAttributedString alloc] initWithString:summaryText];
