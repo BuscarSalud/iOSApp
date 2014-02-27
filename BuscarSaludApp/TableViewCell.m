@@ -43,9 +43,9 @@
         
         self.photoContainer = [UIView newAutoLayoutView];
         [self.photoContainer setBackgroundColor:[UIColor colorWithRed:221.0/255.0 green:221.0/255.0 blue:221.0/255.0 alpha:1]];
-        /*
+        
         self.photoImageView = [UIImageView newAutoLayoutView];
-         */
+        
         
         self.nameLabel = [UILabel newAutoLayoutView];
         [self.nameLabel setLineBreakMode:NSLineBreakByTruncatingTail];
@@ -106,6 +106,7 @@
         [self.contentView addSubview:self.cityLabel];
         [self.contentView addSubview:self.titleLabel];
         [self.contentView addSubview:self.schoolLabel];
+        [self.contentView addSubview:self.photoImageView];
         
         
         //[self.cellBackground addSubview:self.phonelabel];
@@ -143,6 +144,10 @@
     [self.photoContainer autoPinEdge:ALEdgeTop toEdge:ALEdgeBottom ofView:self.nameLabel withOffset:10];
     [self.photoContainer autoPinEdgeToSuperviewEdge:ALEdgeLeading withInset:20];
     //[self.photoContainer autoPinEdgeToSuperviewEdge:ALEdgeBottom withInset:10];
+    
+    [self.photoImageView constrainWidthToView:self.photoContainer predicate:@"*.96"];
+    [self.photoImageView constrainHeightToView:self.photoContainer predicate:@"*.97"];
+    [self.photoImageView alignCenterWithView:self.photoContainer];
 
     [self.summaryLabel setContentCompressionResistancePriority:UILayoutPriorityRequired forAxis:UILayoutConstraintAxisVertical];
     [self.summaryLabel autoPinEdge:ALEdgeTop toEdge:ALEdgeTop ofView:self.photoContainer withOffset:-2];

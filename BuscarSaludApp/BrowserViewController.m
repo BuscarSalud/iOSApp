@@ -11,6 +11,7 @@
 #import "TableViewCell.h"
 #import "UIView+AutoLayout.h"
 #import <QuartzCore/QuartzCore.h>
+#import <SDWebImage/UIImageView+WebCache.h>
 
 static NSString *CellIdentifier = @"CellIdentifier";
 
@@ -188,6 +189,12 @@ static NSString *CellIdentifier = @"CellIdentifier";
     cell.titleLabel.text = [[doctorsList objectForKey:doctor] objectForKey:@"titulo"];
     cell.schoolLabel.text = [[doctorsList objectForKey:doctor] objectForKey:@"escuela"];
     
+    if ([[[doctorsList objectForKey:doctor] objectForKey:@"img"] isKindOfClass:[NSNull class]]){
+        [cell.photoImageView setImage:[UIImage imageNamed:@"placeholder.png"]];
+    }else{
+        NSString *photo = [[doctorsList objectForKey:doctor] objectForKey:@"img"];
+        [cell.photoImageView setImageWithURL:[NSURL URLWithString:photo] placeholderImage:[UIImage imageNamed:@"placeholder.png"]];
+    }
     
     NSString *summaryText = [[doctorsList objectForKey:doctor] objectForKey:@"extracto"];
     NSMutableAttributedString *bodyAttributedText = [[NSMutableAttributedString alloc] initWithString:summaryText];

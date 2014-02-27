@@ -21,6 +21,7 @@
 		021129CC18B301320099F31F /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 021129AB18B301320099F31F /* UIKit.framework */; };
 		021129D418B301320099F31F /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 021129D218B301320099F31F /* InfoPlist.strings */; };
 		021129D618B301320099F31F /* BuscarSaludAppTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 021129D518B301320099F31F /* BuscarSaludAppTests.m */; };
+		023BDAEE18BEF87900D49862 /* placeholder.png in Resources */ = {isa = PBXBuildFile; fileRef = 023BDAED18BEF87900D49862 /* placeholder.png */; };
 		02A70B6818B70E48009C4CDE /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 02A70B6718B70E48009C4CDE /* QuartzCore.framework */; };
 		02A70B6E18B71170009C4CDE /* BrowserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 02A70B6D18B71170009C4CDE /* BrowserViewController.m */; };
 		02A70B7018B72075009C4CDE /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 02A70B6F18B72075009C4CDE /* MapKit.framework */; };
@@ -63,6 +64,7 @@
 		021129D118B301320099F31F /* BuscarSaludAppTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "BuscarSaludAppTests-Info.plist"; sourceTree = "<group>"; };
 		021129D318B301320099F31F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		021129D518B301320099F31F /* BuscarSaludAppTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BuscarSaludAppTests.m; sourceTree = "<group>"; };
+		023BDAED18BEF87900D49862 /* placeholder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = placeholder.png; sourceTree = "<group>"; };
 		02A70B6718B70E48009C4CDE /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		02A70B6C18B71170009C4CDE /* BrowserViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrowserViewController.h; sourceTree = "<group>"; };
 		02A70B6D18B71170009C4CDE /* BrowserViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BrowserViewController.m; sourceTree = "<group>"; };
@@ -167,6 +169,7 @@
 		021129AE18B301320099F31F /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				023BDAED18BEF87900D49862 /* placeholder.png */,
 				02E0982B18BD981A00DF64F7 /* FLKAutoLayout */,
 				02F5AEFF18BC526000E5AE3B /* Fonts */,
 				021129AF18B301320099F31F /* BuscarSaludApp-Info.plist */,
@@ -308,6 +311,7 @@
 				021129C318B301320099F31F /* Images.xcassets in Resources */,
 				021129B218B301320099F31F /* InfoPlist.strings in Resources */,
 				021129BB18B301320099F31F /* Main.storyboard in Resources */,
+				023BDAEE18BEF87900D49862 /* placeholder.png in Resources */,
 				02F5AF0118BC528D00E5AE3B /* SourceSansPro-Regular.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
