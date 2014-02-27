@@ -147,10 +147,14 @@
         [self.contentView addSubview:self.photoContainer];
         [self.contentView addSubview:self.pointsContainer];
         [self.contentView addSubview:self.pointsLabel];
-        [self.contentView addSubview:self.summaryLabel];
+        if (![self.summaryLabel.text isEqualToString:@""]) {
+            [self.contentView addSubview:self.summaryLabel];
+        }
         [self.contentView addSubview:self.phonelabel];
         [self.contentView addSubview:self.streetLabel];
-        [self.contentView addSubview:self.coloniaLabel];
+        if (![self.coloniaLabel.text isEqualToString:@""]) {
+            [self.contentView addSubview:self.coloniaLabel];
+        }
         [self.contentView addSubview:self.cityLabel];
         [self.contentView addSubview:self.titleLabel];
         [self.contentView addSubview:self.schoolLabel];
@@ -178,10 +182,16 @@
 */
     
     [self.cellBackground setContentCompressionResistancePriority:UILayoutPriorityRequired forAxis:UILayoutConstraintAxisVertical];
-    [self.cellBackground autoPinEdgeToSuperviewEdge:ALEdgeTop withInset:10];
+    [self.cellBackground autoPinEdgeToSuperviewEdge:ALEdgeTop withInset:9];
     [self.cellBackground autoPinEdgeToSuperviewEdge:ALEdgeLeading withInset:10];
     [self.cellBackground autoPinEdgeToSuperviewEdge:ALEdgeTrailing withInset:10];
-    [self.cellBackground autoPinEdge:ALEdgeBottom toEdge:ALEdgeBottom ofView:self.schoolLabel withOffset:10];
+    if ([self.summaryLabel.text isEqualToString:@""] && [self.phonelabel.text isEqualToString:@""]) {
+        [self.cellBackground autoPinEdge:ALEdgeBottom toEdge:ALEdgeBottom ofView:buttonGradient withOffset:10];
+        NSLog(@"No hay extracto ni telefono!! : %@", self.nameLabel.text);
+    }else{
+        [self.cellBackground autoPinEdge:ALEdgeBottom toEdge:ALEdgeBottom ofView:self.schoolLabel withOffset:10];
+    }
+    
     
     
     [self.nameLabel setContentCompressionResistancePriority:UILayoutPriorityRequired forAxis:UILayoutConstraintAxisVertical];
@@ -191,7 +201,7 @@
     
     [self.photoContainer setContentCompressionResistancePriority:UILayoutPriorityRequired forAxis:UILayoutConstraintAxisVertical];
     [self.photoContainer constrainWidth:@"62" height:@"87"];
-    [self.photoContainer autoPinEdge:ALEdgeTop toEdge:ALEdgeBottom ofView:self.nameLabel withOffset:8];
+    [self.photoContainer autoPinEdge:ALEdgeTop toEdge:ALEdgeBottom ofView:self.nameLabel withOffset:5];
     [self.photoContainer autoPinEdgeToSuperviewEdge:ALEdgeLeading withInset:20];
     //[self.photoContainer autoPinEdgeToSuperviewEdge:ALEdgeBottom withInset:10];
     
@@ -217,47 +227,57 @@
 
     [self.summaryLabel setContentCompressionResistancePriority:UILayoutPriorityRequired forAxis:UILayoutConstraintAxisVertical];
     [self.summaryLabel autoPinEdge:ALEdgeTop toEdge:ALEdgeTop ofView:self.photoContainer withOffset:-2];
-    [self.summaryLabel autoPinEdge:ALEdgeLeading toEdge:ALEdgeRight ofView:self.photoContainer withOffset:15];
+    [self.summaryLabel autoPinEdge:ALEdgeLeading toEdge:ALEdgeRight ofView:self.photoContainer withOffset:10];
     [self.summaryLabel autoPinEdgeToSuperviewEdge:ALEdgeTrailing withInset:20];
     //[self.summaryLabel autoPinEdgeToSuperviewEdge:ALEdgeBottom withInset:10];
     
     [self.phonelabel setContentCompressionResistancePriority:UILayoutPriorityRequired forAxis:UILayoutConstraintAxisVertical];
-    [self.phonelabel autoPinEdge:ALEdgeTop toEdge:ALEdgeBottom ofView:self.summaryLabel withOffset:10];
-    [self.phonelabel autoPinEdge:ALEdgeLeading toEdge:ALEdgeRight ofView:self.photoContainer withOffset:15];
+    if ([self.summaryLabel.text isEqualToString:@""]) {
+        [self.phonelabel autoPinEdge:ALEdgeTop toEdge:ALEdgeTop ofView:self.photoContainer withOffset:-2];
+    }else{
+        [self.phonelabel autoPinEdge:ALEdgeTop toEdge:ALEdgeBottom ofView:self.summaryLabel withOffset:11];
+    }
+    [self.phonelabel autoPinEdge:ALEdgeLeading toEdge:ALEdgeLeft ofView:self.summaryLabel];
+    //[self.phonelabel autoPinEdge:ALEdgeLeading toEdge:ALEdgeRight ofView:self.photoContainer withOffset:15];
     [self.phonelabel autoPinEdgeToSuperviewEdge:ALEdgeTrailing withInset:20];
     //[self.phonelabel autoPinEdgeToSuperviewEdge:ALEdgeBottom withInset:10];
     
     [self.streetLabel setContentCompressionResistancePriority:UILayoutPriorityRequired forAxis:UILayoutConstraintAxisVertical];
     [self.streetLabel autoPinEdge:ALEdgeTop toEdge:ALEdgeBottom ofView:self.phonelabel];
-    [self.streetLabel autoPinEdge:ALEdgeLeading toEdge:ALEdgeRight ofView:self.photoContainer withOffset:15];
+    [self.streetLabel autoPinEdge:ALEdgeLeading toEdge:ALEdgeLeft ofView:self.summaryLabel];
     [self.streetLabel autoPinEdgeToSuperviewEdge:ALEdgeTrailing withInset:20];
     //[self.streetLabel autoPinEdgeToSuperviewEdge:ALEdgeBottom withInset:10];
     
     [self.coloniaLabel setContentCompressionResistancePriority:UILayoutPriorityRequired forAxis:UILayoutConstraintAxisVertical];
     [self.coloniaLabel autoPinEdge:ALEdgeTop toEdge:ALEdgeBottom ofView:self.streetLabel];
-    [self.coloniaLabel autoPinEdge:ALEdgeLeading toEdge:ALEdgeRight ofView:self.photoContainer withOffset:15];
+    [self.coloniaLabel autoPinEdge:ALEdgeLeading toEdge:ALEdgeLeft ofView:self.summaryLabel];
     [self.coloniaLabel autoPinEdgeToSuperviewEdge:ALEdgeTrailing withInset:20];
     //[self.coloniaLabel autoPinEdgeToSuperviewEdge:ALEdgeBottom withInset:10];
     
     [self.cityLabel setContentCompressionResistancePriority:UILayoutPriorityRequired forAxis:UILayoutConstraintAxisVertical];
+    if ([self.coloniaLabel.text isEqualToString:@""]) {
+        [self.cityLabel autoPinEdge:ALEdgeTop toEdge:ALEdgeBottom ofView:self.streetLabel];
+    }else{
+        [self.cityLabel autoPinEdge:ALEdgeTop toEdge:ALEdgeBottom ofView:self.coloniaLabel];
+    }
     [self.cityLabel autoPinEdge:ALEdgeTop toEdge:ALEdgeBottom ofView:self.coloniaLabel];
-    [self.cityLabel autoPinEdge:ALEdgeLeading toEdge:ALEdgeRight ofView:self.photoContainer withOffset:15];
+    [self.cityLabel autoPinEdge:ALEdgeLeading toEdge:ALEdgeLeft ofView:self.summaryLabel];
     [self.cityLabel autoPinEdgeToSuperviewEdge:ALEdgeTrailing withInset:20];
     //[self.cityLabel autoPinEdgeToSuperviewEdge:ALEdgeBottom withInset:10];
-    
+ 
     [self.titleLabel setContentCompressionResistancePriority:UILayoutPriorityRequired forAxis:UILayoutConstraintAxisVertical];
-    [self.titleLabel autoPinEdge:ALEdgeTop toEdge:ALEdgeBottom ofView:self.coloniaLabel];
-    [self.titleLabel autoPinEdge:ALEdgeLeading toEdge:ALEdgeRight ofView:self.cityLabel withOffset:15];
+    [self.titleLabel autoPinEdge:ALEdgeTop toEdge:ALEdgeBottom ofView:self.cityLabel withOffset:10];
+    [self.titleLabel autoPinEdge:ALEdgeLeading toEdge:ALEdgeLeft ofView:self.summaryLabel];
     [self.titleLabel autoPinEdgeToSuperviewEdge:ALEdgeTrailing withInset:20];
     //[self.titleLabel autoPinEdgeToSuperviewEdge:ALEdgeBottom withInset:10];
-    
+
     [self.schoolLabel setContentCompressionResistancePriority:UILayoutPriorityRequired forAxis:UILayoutConstraintAxisVertical];
-    [self.schoolLabel autoPinEdge:ALEdgeTop toEdge:ALEdgeBottom ofView:self.coloniaLabel];
-    [self.schoolLabel autoPinEdge:ALEdgeLeading toEdge:ALEdgeRight ofView:self.titleLabel withOffset:15];
+    [self.schoolLabel autoPinEdge:ALEdgeTop toEdge:ALEdgeBottom ofView:self.titleLabel];
+    [self.schoolLabel autoPinEdge:ALEdgeLeading toEdge:ALEdgeLeft ofView:self.summaryLabel];
     [self.schoolLabel autoPinEdgeToSuperviewEdge:ALEdgeTrailing withInset:20];
-    [self.schoolLabel autoPinEdgeToSuperviewEdge:ALEdgeBottom withInset:10];
+    [self.schoolLabel autoPinEdgeToSuperviewEdge:ALEdgeBottom withInset:15];
     
-    
+   
     
     /*[self.photoContainer setContentCompressionResistancePriority:UILayoutPriorityRequired forAxis:UILayoutConstraintAxisVertical];
     [self.photoContainer constrainWidth:@"62" height:@"87"];
@@ -314,9 +334,13 @@
     // Set the preferredMaxLayoutWidth of the mutli-line body Label based on the evaluated width of the label's frame,
     // as this will allow the text to wrap correctly, and as a result allow the label to take on the correct height.
     self.nameLabel.preferredMaxLayoutWidth = CGRectGetWidth(self.nameLabel.frame);
-    self.summaryLabel.preferredMaxLayoutWidth = CGRectGetWidth(self.summaryLabel.frame);
+    if (![self.summaryLabel.text isEqualToString:@""]) {
+        self.summaryLabel.preferredMaxLayoutWidth = CGRectGetWidth(self.summaryLabel.frame);
+    }
     self.streetLabel.preferredMaxLayoutWidth = CGRectGetWidth(self.streetLabel.frame);
-    self.coloniaLabel.preferredMaxLayoutWidth = CGRectGetWidth(self.coloniaLabel.frame);
+    if (![self.coloniaLabel.text isEqualToString:@""]) {
+        self.coloniaLabel.preferredMaxLayoutWidth = CGRectGetWidth(self.coloniaLabel.frame);
+    }
     self.cityLabel.preferredMaxLayoutWidth = CGRectGetWidth(self.cityLabel.frame);
     self.titleLabel.preferredMaxLayoutWidth = CGRectGetWidth(self.titleLabel.frame);
     self.schoolLabel.preferredMaxLayoutWidth = CGRectGetWidth(self.schoolLabel.frame);

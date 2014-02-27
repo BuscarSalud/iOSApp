@@ -157,10 +157,10 @@
 				02A70B6D18B71170009C4CDE /* BrowserViewController.m */,
 				021129BF18B301320099F31F /* SecondViewController.h */,
 				021129C018B301320099F31F /* SecondViewController.m */,
-				021129C218B301320099F31F /* Images.xcassets */,
-				021129AE18B301320099F31F /* Supporting Files */,
 				02F5AEFC18BC2C2F00E5AE3B /* TableViewCell.h */,
 				02F5AEFD18BC2C2F00E5AE3B /* TableViewCell.m */,
+				021129C218B301320099F31F /* Images.xcassets */,
+				021129AE18B301320099F31F /* Supporting Files */,
 			);
 			path = BuscarSaludApp;
 			sourceTree = "<group>";

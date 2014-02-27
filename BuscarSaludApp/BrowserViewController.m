@@ -28,6 +28,7 @@ static NSString *CellIdentifier = @"CellIdentifier";
     double lat;
     double lon;
     NSDictionary *doctorsList;
+    CALayer *navbarLayer;
 
 }
 
@@ -49,6 +50,8 @@ static NSString *CellIdentifier = @"CellIdentifier";
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     
+    navbarLayer = nil;
+    navbarLayer = self.navigationController.navigationBar.layer;
     
     self.view.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     self.tableView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
@@ -254,13 +257,29 @@ static NSString *CellIdentifier = @"CellIdentifier";
     return height;
 }
 
-
-
-
-- (void)animateNavigationBar
+- (CGFloat)tableView:(UITableView *)tableView estimatedHeightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    CALayer *navbarLayer = nil;
-    navbarLayer = self.navigationController.navigationBar.layer;
+    return 300.0f;
+}
+
+/*
+-(void)scrollViewDidScroll:(UIScrollView *)scrollView
+{
+    if (scrollView.contentOffset.y <= 64 && scrollView.contentOffset.y > 0) {
+        [self animateNavigationBar:scrollView.contentOffset.y];
+        //NSLog(@"ScrollView offset = %f", scrollView.contentOffset.y);
+    }
+}
+
+
+- (void)animateNavigationBar:(CGFloat)offSet
+{
+
+    [UIView animateWithDuration:0.0 animations:^{
+        navbarLayer.position =CGPointMake(navbarLayer.position.x, 42-offSet);
+        NSLog(@"New position = %f", -offSet);
+    }];
+    
     [UIView animateWithDuration:2 animations:^{
         navbarLayer.position = CGPointMake(navbarLayer.position.x,
                                      -self.navigationController.navigationBar.frame.
@@ -273,5 +292,20 @@ static NSString *CellIdentifier = @"CellIdentifier";
         }];
     }];
 }
+*/
 
+- (void)animateNavigationBar
+{
+    [UIView animateWithDuration:2 animations:^{
+        navbarLayer.position = CGPointMake(navbarLayer.position.x,
+                                           -self.navigationController.navigationBar.frame.
+                                           size.height);
+    } /*completion:^(BOOL finished){
+        [UIView animateWithDuration:1 animations:^{
+            navbarLayer.position = CGPointMake(navbarLayer.position.x,
+                                               + self.navigationController.navigationBar.frame.
+                                               size.height);
+        }];
+    }*/];
+}
 @end
