@@ -181,8 +181,6 @@ static NSString *CellIdentifier = @"CellIdentifier";
     TableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     NSString *doctor = [NSString stringWithFormat:@"doctor%d",indexPath.row];
     
-    [cell updateFonts];
-    
     cell.nameLabel.text = [[doctorsList objectForKey:doctor] objectForKey:@"nombre"];
     cell.phonelabel.text = [[doctorsList objectForKey:doctor] objectForKey:@"telefono"];
     cell.streetLabel.text = [[doctorsList objectForKey:doctor] objectForKey:@"calle"];
@@ -208,6 +206,8 @@ static NSString *CellIdentifier = @"CellIdentifier";
     [bodyAttributedText addAttribute:NSParagraphStyleAttributeName value:bodyParagraphStyle range:NSMakeRange(0, summaryText.length)];
     cell.summaryLabel.attributedText = bodyAttributedText;
     
+    [cell updateFonts];
+    
     [cell setNeedsUpdateConstraints];
     [cell updateConstraintsIfNeeded];
     
@@ -218,8 +218,6 @@ static NSString *CellIdentifier = @"CellIdentifier";
 {
     TableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     NSString *doctor = [NSString stringWithFormat:@"doctor%d",indexPath.row];
-    
-    [cell updateFonts];
     
     cell.nameLabel.text = [[doctorsList objectForKey:doctor] objectForKey:@"nombre"];
     cell.phonelabel.text = [[doctorsList objectForKey:doctor] objectForKey:@"telefono"];
@@ -238,6 +236,8 @@ static NSString *CellIdentifier = @"CellIdentifier";
     [bodyParagraphStyle setLineSpacing:0.0f];
     [bodyAttributedText addAttribute:NSParagraphStyleAttributeName value:bodyParagraphStyle range:NSMakeRange(0, summaryText.length)];
     cell.summaryLabel.attributedText = bodyAttributedText;
+    
+    [cell updateFonts];
     
     [cell setNeedsUpdateConstraints];
     [cell updateConstraintsIfNeeded];

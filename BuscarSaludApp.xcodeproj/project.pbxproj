@@ -66,7 +66,7 @@
 		023BDAED18BEF87900D49862 /* placeholder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = placeholder.png; sourceTree = "<group>"; };
 		023BDAEF18BF2DAA00D49862 /* SourceSansPro-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SourceSansPro-Bold.ttf"; sourceTree = "<group>"; };
 		023BDAF018BF2DAA00D49862 /* SourceSansPro-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SourceSansPro-Regular.ttf"; sourceTree = "<group>"; };
-		023BDAF118BF2DAA00D49862 /* SourceSansPro-Semibold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SourceSansPro-Semibold.ttf"; sourceTree = "<group>"; };
+		023BDAF618BF37BD00D49862 /* source-sans-proSemibold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "source-sans-proSemibold.ttf"; sourceTree = "<group>"; };
 		02A70B6718B70E48009C4CDE /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		02A70B6C18B71170009C4CDE /* BrowserViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrowserViewController.h; sourceTree = "<group>"; };
 		02A70B6D18B71170009C4CDE /* BrowserViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BrowserViewController.m; sourceTree = "<group>"; };
@@ -222,9 +222,9 @@
 		02F5AEFF18BC526000E5AE3B /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
+				023BDAF618BF37BD00D49862 /* source-sans-proSemibold.ttf */,
 				023BDAEF18BF2DAA00D49862 /* SourceSansPro-Bold.ttf */,
 				023BDAF018BF2DAA00D49862 /* SourceSansPro-Regular.ttf */,
-				023BDAF118BF2DAA00D49862 /* SourceSansPro-Semibold.ttf */,
 			);
 			name = Fonts;
 			sourceTree = "<group>";

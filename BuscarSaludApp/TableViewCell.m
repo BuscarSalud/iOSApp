@@ -45,6 +45,7 @@
         UIColor *color1Gradient = [UIColor colorWithRGB:0x70b220];
         UIColor *color2Gradient = [UIColor colorWithRGB:0x60961b];
         UIColor *seeProfileButtonTextColor = [UIColor colorWithRGB:0xffffff];
+        UIColor *seeProfileButtonTextShadowColor = [UIColor colorWithRGB:0x5d931a];
         
         
         self.contentView.backgroundColor = contentViewColor;
@@ -137,6 +138,8 @@
         [self.seeProfileLabel setTextAlignment:NSTextAlignmentLeft];
         [self.seeProfileLabel setTextColor:seeProfileButtonTextColor];
         self.seeProfileLabel.text = @"Ver Perfil";
+        self.seeProfileLabel.shadowColor = seeProfileButtonTextShadowColor;
+        self.seeProfileLabel.shadowOffset = CGSizeMake(0.0, -1.0);
         
         
         [self.contentView addSubview:self.cellBackground];
@@ -192,7 +195,7 @@
     [self.photoContainer autoPinEdgeToSuperviewEdge:ALEdgeLeading withInset:20];
     //[self.photoContainer autoPinEdgeToSuperviewEdge:ALEdgeBottom withInset:10];
     
-    [self.photoImageView constrainWidthToView:self.photoContainer predicate:@"*.96"];
+    [self.photoImageView constrainWidthToView:self.photoContainer predicate:@"*.97"];
     [self.photoImageView constrainHeightToView:self.photoContainer predicate:@"*.98"];
     [self.photoImageView alignCenterWithView:self.photoContainer];
     
@@ -326,22 +329,23 @@
     
     UIFont *sourceSansProRegular13 = [UIFont fontWithName:@"SourceSansPro-Regular" size:13];
     UIFont *sourceSansProRegular10 = [UIFont fontWithName:@"SourceSansPro-Regular" size:10];
-    UIFont *sourceSansProSemibold17 = [UIFont fontWithName:@"SourceSansPro-Semibold" size:17];
-    UIFont *sourceSansProSemibold11 = [UIFont fontWithName:@"SourceSansPro-Semibold" size:6];
-    UIFont *sourceSansProBold13 = [UIFont fontWithName:@"SourceSansPro-Bold" size:13];
+    UIFont *sourceSansProRegular12 = [UIFont fontWithName:@"SourceSansPro-Regular" size:12];
+    UIFont *sourceSansProSemibold17 = [UIFont fontWithName:@"source-sans-proSemibold.ttf" size:17];
+/*    UIFont *sourceSansProSemibold11 = [UIFont fontWithName:@"SourceSansPro-Semibold" size:6];
+    UIFont *sourceSansProBold13 = [UIFont fontWithName:@"SourceSansPro-Bold" size:13];*/
      
     
     
     [self.nameLabel setFont: sourceSansProSemibold17];
     [self.summaryLabel setFont:sourceSansProRegular13];
-    [self.phonelabel setFont:sourceSansProBold13];
+    [self.phonelabel setFont:[UIFont fontWithName:@"SourceSansPro-Bold" size:13]];
     [self.streetLabel setFont:sourceSansProRegular13];
     [self.coloniaLabel setFont:sourceSansProRegular13];
     [self.cityLabel setFont:sourceSansProRegular13];
     [self.titleLabel setFont:sourceSansProRegular13];
     [self.schoolLabel setFont:sourceSansProRegular13];
     [self.pointsLabel setFont:sourceSansProRegular10];
-    [self.seeProfileLabel setFont:sourceSansProRegular10];
+    [self.seeProfileLabel setFont:sourceSansProRegular12];
      
 }
 
