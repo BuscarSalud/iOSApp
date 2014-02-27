@@ -10,10 +10,18 @@
 #import "UIView+AutoLayout.h"
 #import "UIView+FLKAutoLayout.h"
 #import <QuartzCore/QuartzCore.h>
+#import "MPColorTools.h"
+#import "GRKGradientView.h"
 
 @interface TableViewCell()
+{
+    GRKGradientView *buttonGradient;
+
+}
 
 @property (nonatomic, assign) BOOL didSetupConstraints;
+
+//@property (nonatomic,weak) IBOutlet GRKGradientView *buttonGradient;
 
 @end
 
@@ -25,80 +33,117 @@
     if (self) {
         // Initialization code
         
-        self.contentView.backgroundColor = [UIColor colorWithRed:217.0/255.0 green:220.0/255.0 blue:211.0/255.0 alpha:0.8];
+        UIColor *contentViewColor = [UIColor colorWithRGB:0xd9dcd3];
+        UIColor *textNameColor = [UIColor colorWithRGB:0x484848];
+        UIColor *textOthersColor = [UIColor colorWithRGB:0x474747];
+        UIColor *pointsColor = [UIColor colorWithRGB:0x464646];
+        UIColor *phoneNumberColor = [UIColor colorWithRGB:0x77a50e];
+        UIColor *cellBackgroundBorderColor = [UIColor colorWithRGB:0xccd0c9];
+        UIColor *cellBackgroundColor = [UIColor colorWithRGB:0xf4f8f0];
+        UIColor *photoContainerColor = [UIColor colorWithRGB:0xdddddd];
+        UIColor *pointsContainerColor = [UIColor colorWithRGB:0xedf0e7];
+        UIColor *color1Gradient = [UIColor colorWithRGB:0x70b220];
+        UIColor *color2Gradient = [UIColor colorWithRGB:0x60961b];
+        UIColor *seeProfileButtonTextColor = [UIColor colorWithRGB:0xffffff];
+        
+        
+        self.contentView.backgroundColor = contentViewColor;
         //self.contentView.layer.cornerRadius = 10;
         
         self.cellBackground = [UIView newAutoLayoutView];
         self.cellBackground.layer.cornerRadius = 10;
-        self.cellBackground.layer.borderColor = [UIColor colorWithRed:204.0/255.0 green:208.0/255.0 blue:201.0/255 alpha:1].CGColor;
+        self.cellBackground.layer.borderColor = cellBackgroundBorderColor.CGColor;
         self.cellBackground.layer.borderWidth = 0.8f;
-        self.cellBackground.layer.shadowColor = [UIColor colorWithRed:204.0/255.0 green:208.0/255.0 blue:201.0/255 alpha:1].CGColor;
+        self.cellBackground.layer.shadowColor = cellBackgroundBorderColor.CGColor;
         self.cellBackground.layer.shadowOffset = CGSizeMake(0.0, 10.0);
         //self.cellBackground.layer.shadowOpacity = 1.0;
         //self.cellBackground.layer.shadowRadius = 20.0;
-        
-        
-        [self.cellBackground setBackgroundColor:[UIColor colorWithRed:245.0/255 green:247.0/255.0 blue:242.0/255 alpha:1]];
-        
+        [self.cellBackground setBackgroundColor:cellBackgroundColor];
         
         self.photoContainer = [UIView newAutoLayoutView];
-        [self.photoContainer setBackgroundColor:[UIColor colorWithRed:221.0/255.0 green:221.0/255.0 blue:221.0/255.0 alpha:1]];
+        [self.photoContainer setBackgroundColor:photoContainerColor];
         
         self.photoImageView = [UIImageView newAutoLayoutView];
+        
+        self.pointsContainer = [UIView newAutoLayoutView];
+        [self.pointsContainer setBackgroundColor:pointsContainerColor];
+        
+        
+        buttonGradient = [[GRKGradientView alloc]init];
+        //buttonGradient.gradientOrientation = GRKGradientOrientationDown;
+        buttonGradient.gradientColors = [NSArray arrayWithObjects:color1Gradient, color2Gradient, nil];
+        buttonGradient.layer.cornerRadius = 5;
+        [[buttonGradient layer] setMasksToBounds:YES];
+        
         
         
         self.nameLabel = [UILabel newAutoLayoutView];
         [self.nameLabel setLineBreakMode:NSLineBreakByTruncatingTail];
         [self.nameLabel setNumberOfLines:0];
         [self.nameLabel setTextAlignment:NSTextAlignmentLeft];
-        [self.nameLabel setTextColor:[UIColor colorWithRed:72.0/255.0 green:72.0/255.0 blue:72.0/255.0 alpha:1]];
+        [self.nameLabel setTextColor:textNameColor];
       
         self.summaryLabel = [UILabel newAutoLayoutView];
         [self.summaryLabel setLineBreakMode:NSLineBreakByTruncatingTail];
         [self.summaryLabel setNumberOfLines:0];
         [self.summaryLabel setTextAlignment:NSTextAlignmentLeft];
-        [self.summaryLabel setTextColor:[UIColor colorWithRed:72.0/255.0 green:72.0/255.0 blue:72.0/255.0 alpha:1]];
+        [self.summaryLabel setTextColor:textNameColor];
         
         self.phonelabel = [UILabel newAutoLayoutView];
         [self.phonelabel setLineBreakMode:NSLineBreakByTruncatingTail];
         [self.phonelabel setNumberOfLines:1];
         [self.phonelabel setTextAlignment:NSTextAlignmentLeft];
-        [self.phonelabel setTextColor:[UIColor colorWithRed:119.0/255.0 green:165.0/255.0 blue:14.0/255.0 alpha:1]];
+        [self.phonelabel setTextColor:phoneNumberColor];
         
         self.streetLabel = [UILabel newAutoLayoutView];
         [self.streetLabel setLineBreakMode:NSLineBreakByTruncatingTail];
         [self.streetLabel setNumberOfLines:0];
         [self.streetLabel setTextAlignment:NSTextAlignmentLeft];
-        [self.streetLabel setTextColor:[UIColor colorWithRed:72.0/255.0 green:72.0/255.0 blue:72.0/255.0 alpha:1]];
+        [self.streetLabel setTextColor:textOthersColor];
         
         self.coloniaLabel = [UILabel newAutoLayoutView];
         [self.coloniaLabel setLineBreakMode:NSLineBreakByTruncatingTail];
         [self.coloniaLabel setNumberOfLines:0];
         [self.coloniaLabel setTextAlignment:NSTextAlignmentLeft];
-        [self.coloniaLabel setTextColor:[UIColor colorWithRed:72.0/255.0 green:72.0/255.0 blue:72.0/255.0 alpha:1]];
+        [self.coloniaLabel setTextColor:textOthersColor];
         
         self.cityLabel = [UILabel newAutoLayoutView];
         [self.cityLabel setLineBreakMode:NSLineBreakByTruncatingTail];
         [self.cityLabel setNumberOfLines:0];
         [self.cityLabel setTextAlignment:NSTextAlignmentLeft];
-        [self.cityLabel setTextColor:[UIColor colorWithRed:72.0/255.0 green:72.0/255.0 blue:72.0/255.0 alpha:1]];
+        [self.cityLabel setTextColor:textOthersColor];
         
         self.titleLabel = [UILabel newAutoLayoutView];
         [self.titleLabel setLineBreakMode:NSLineBreakByTruncatingTail];
         [self.titleLabel setNumberOfLines:0];
         [self.titleLabel setTextAlignment:NSTextAlignmentLeft];
-        [self.titleLabel setTextColor:[UIColor colorWithRed:72.0/255.0 green:72.0/255.0 blue:72.0/255.0 alpha:1]];
+        [self.titleLabel setTextColor:textOthersColor];
         
         self.schoolLabel = [UILabel newAutoLayoutView];
         [self.schoolLabel setLineBreakMode:NSLineBreakByTruncatingTail];
         [self.schoolLabel setNumberOfLines:0];
         [self.schoolLabel setTextAlignment:NSTextAlignmentLeft];
-        [self.schoolLabel setTextColor:[UIColor colorWithRed:72.0/255.0 green:72.0/255.0 blue:72.0/255.0 alpha:1]];
+        [self.schoolLabel setTextColor:textOthersColor];
+        
+        self.pointsLabel = [UILabel newAutoLayoutView];
+        [self.pointsLabel setLineBreakMode:NSLineBreakByTruncatingTail];
+        [self.pointsLabel setNumberOfLines:1];
+        [self.pointsLabel setTextAlignment:NSTextAlignmentLeft];
+        [self.pointsLabel setTextColor:pointsColor];
+        
+        self.seeProfileLabel = [UILabel newAutoLayoutView];
+        [self.seeProfileLabel setLineBreakMode:NSLineBreakByTruncatingTail];
+        [self.seeProfileLabel setNumberOfLines:1];
+        [self.seeProfileLabel setTextAlignment:NSTextAlignmentLeft];
+        [self.seeProfileLabel setTextColor:seeProfileButtonTextColor];
+        self.seeProfileLabel.text = @"Ver Perfil";
         
         
         [self.contentView addSubview:self.cellBackground];
         [self.contentView addSubview:self.nameLabel];
         [self.contentView addSubview:self.photoContainer];
+        [self.contentView addSubview:self.pointsContainer];
+        [self.contentView addSubview:self.pointsLabel];
         [self.contentView addSubview:self.summaryLabel];
         [self.contentView addSubview:self.phonelabel];
         [self.contentView addSubview:self.streetLabel];
@@ -107,6 +152,8 @@
         [self.contentView addSubview:self.titleLabel];
         [self.contentView addSubview:self.schoolLabel];
         [self.contentView addSubview:self.photoImageView];
+        [self.contentView addSubview:buttonGradient];
+        [self.contentView addSubview:self.seeProfileLabel];
         
         
         //[self.cellBackground addSubview:self.phonelabel];
@@ -141,13 +188,29 @@
     
     [self.photoContainer setContentCompressionResistancePriority:UILayoutPriorityRequired forAxis:UILayoutConstraintAxisVertical];
     [self.photoContainer constrainWidth:@"62" height:@"87"];
-    [self.photoContainer autoPinEdge:ALEdgeTop toEdge:ALEdgeBottom ofView:self.nameLabel withOffset:10];
+    [self.photoContainer autoPinEdge:ALEdgeTop toEdge:ALEdgeBottom ofView:self.nameLabel withOffset:8];
     [self.photoContainer autoPinEdgeToSuperviewEdge:ALEdgeLeading withInset:20];
     //[self.photoContainer autoPinEdgeToSuperviewEdge:ALEdgeBottom withInset:10];
     
     [self.photoImageView constrainWidthToView:self.photoContainer predicate:@"*.96"];
-    [self.photoImageView constrainHeightToView:self.photoContainer predicate:@"*.97"];
+    [self.photoImageView constrainHeightToView:self.photoContainer predicate:@"*.98"];
     [self.photoImageView alignCenterWithView:self.photoContainer];
+    
+    [self.pointsContainer constrainWidthToView:self.photoContainer predicate:@"*1"];
+    [self.pointsContainer constrainHeight:@"13"];
+    [self.pointsContainer autoPinEdge:ALEdgeTop toEdge:ALEdgeBottom ofView:self.photoContainer];
+    [self.pointsContainer autoPinEdge:ALEdgeLeading toEdge:ALEdgeLeft ofView:self.photoContainer];
+    
+    [self.pointsLabel setContentCompressionResistancePriority:UILayoutPriorityRequired forAxis:UILayoutConstraintAxisVertical];
+    [self.pointsLabel alignCenterWithView:self.pointsContainer];
+    
+    [buttonGradient constrainWidthToView:self.pointsContainer predicate:@"*1"];
+    [buttonGradient constrainHeight:@"21"];
+    [buttonGradient autoPinEdge:ALEdgeTop toEdge:ALEdgeBottom ofView:self.pointsContainer];
+    [buttonGradient autoPinEdge:ALEdgeLeading toEdge:ALEdgeLeft ofView:self.photoContainer];
+    
+    [self.seeProfileLabel setContentCompressionResistancePriority:UILayoutPriorityRequired forAxis:UILayoutConstraintAxisVertical];
+    [self.seeProfileLabel alignCenterWithView:buttonGradient];
 
     [self.summaryLabel setContentCompressionResistancePriority:UILayoutPriorityRequired forAxis:UILayoutConstraintAxisVertical];
     [self.summaryLabel autoPinEdge:ALEdgeTop toEdge:ALEdgeTop ofView:self.photoContainer withOffset:-2];
@@ -254,15 +317,22 @@
     self.cityLabel.preferredMaxLayoutWidth = CGRectGetWidth(self.cityLabel.frame);
     self.titleLabel.preferredMaxLayoutWidth = CGRectGetWidth(self.titleLabel.frame);
     self.schoolLabel.preferredMaxLayoutWidth = CGRectGetWidth(self.schoolLabel.frame);
+    self.pointsLabel.preferredMaxLayoutWidth = CGRectGetWidth(self.pointsLabel.frame);
+    self.seeProfileLabel.preferredMaxLayoutWidth = CGRectGetWidth(self.seeProfileLabel.frame);
 }
 
 - (void)updateFonts
 {
-    UIFont *sourceSansProRegular13 = [UIFont fontWithName:@"SourceSansPro-Regular" size:13];
-    UIFont *sourceSansProSemibold16 = [UIFont fontWithName:@"SourceSansPro-Semibold" size:16];
-    UIFont *sourceSansProBold13 = [UIFont fontWithName:@"SourceSansPro-Bold" size:13];
     
-    [self.nameLabel setFont:sourceSansProSemibold16];
+    UIFont *sourceSansProRegular13 = [UIFont fontWithName:@"SourceSansPro-Regular" size:13];
+    UIFont *sourceSansProRegular10 = [UIFont fontWithName:@"SourceSansPro-Regular" size:10];
+    UIFont *sourceSansProSemibold17 = [UIFont fontWithName:@"SourceSansPro-Semibold" size:17];
+    UIFont *sourceSansProSemibold11 = [UIFont fontWithName:@"SourceSansPro-Semibold" size:6];
+    UIFont *sourceSansProBold13 = [UIFont fontWithName:@"SourceSansPro-Bold" size:13];
+     
+    
+    
+    [self.nameLabel setFont: sourceSansProSemibold17];
     [self.summaryLabel setFont:sourceSansProRegular13];
     [self.phonelabel setFont:sourceSansProBold13];
     [self.streetLabel setFont:sourceSansProRegular13];
@@ -270,6 +340,9 @@
     [self.cityLabel setFont:sourceSansProRegular13];
     [self.titleLabel setFont:sourceSansProRegular13];
     [self.schoolLabel setFont:sourceSansProRegular13];
+    [self.pointsLabel setFont:sourceSansProRegular10];
+    [self.seeProfileLabel setFont:sourceSansProRegular10];
+     
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated

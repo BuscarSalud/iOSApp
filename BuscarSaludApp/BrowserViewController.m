@@ -11,7 +11,9 @@
 #import "TableViewCell.h"
 #import "UIView+AutoLayout.h"
 #import <QuartzCore/QuartzCore.h>
-#import <SDWebImage/UIImageView+WebCache.h>
+//#import <SDWebImage/UIImageView+WebCache.h>
+#import "UIImageView+UIActivityIndicatorForSDWebImage.h"
+
 
 static NSString *CellIdentifier = @"CellIdentifier";
 
@@ -189,11 +191,14 @@ static NSString *CellIdentifier = @"CellIdentifier";
     cell.titleLabel.text = [[doctorsList objectForKey:doctor] objectForKey:@"titulo"];
     cell.schoolLabel.text = [[doctorsList objectForKey:doctor] objectForKey:@"escuela"];
     
+    NSString *pointsText = [NSString stringWithFormat:@"%@ puntos", [[doctorsList objectForKey:doctor] objectForKey:@"puntos"]];
+    cell.pointsLabel.text = pointsText;
+    
     if ([[[doctorsList objectForKey:doctor] objectForKey:@"img"] isKindOfClass:[NSNull class]]){
         [cell.photoImageView setImage:[UIImage imageNamed:@"placeholder.png"]];
     }else{
         NSString *photo = [[doctorsList objectForKey:doctor] objectForKey:@"img"];
-        [cell.photoImageView setImageWithURL:[NSURL URLWithString:photo] placeholderImage:[UIImage imageNamed:@"placeholder.png"]];
+        [cell.photoImageView setImageWithURL:[NSURL URLWithString:photo] placeholderImage:[UIImage imageNamed:@"placeholder.png"] usingActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
     }
     
     NSString *summaryText = [[doctorsList objectForKey:doctor] objectForKey:@"extracto"];
@@ -223,6 +228,9 @@ static NSString *CellIdentifier = @"CellIdentifier";
     cell.cityLabel.text = [[doctorsList objectForKey:doctor] objectForKey:@"ciudad"];
     cell.titleLabel.text = [[doctorsList objectForKey:doctor] objectForKey:@"titulo"];
     cell.schoolLabel.text = [[doctorsList objectForKey:doctor] objectForKey:@"escuela"];
+    
+    NSString *pointsText = [NSString stringWithFormat:@"%@ puntos", [[doctorsList objectForKey:doctor] objectForKey:@"puntos"]];
+    cell.pointsLabel.text = pointsText;
     
     NSString *summaryText = [[doctorsList objectForKey:doctor] objectForKey:@"extracto"];
     NSMutableAttributedString *bodyAttributedText = [[NSMutableAttributedString alloc] initWithString:summaryText];

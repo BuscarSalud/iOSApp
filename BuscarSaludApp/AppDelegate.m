@@ -7,6 +7,7 @@
 //
 
 #import "AppDelegate.h"
+#import "MPColorTools.h"
 
 @implementation AppDelegate
 
@@ -14,11 +15,12 @@
 {
     // Override point for customization after application launch.
     self.infoEngine = [[getInfoEngine alloc] initWithHostName:@"ws.buscarsalud.com"];
+    UIColor *navigationBarColor = [UIColor colorWithRGB:0x619b1b];
     
     if (floor(NSFoundationVersionNumber) <= NSFoundationVersionNumber_iOS_6_1) {
         NSLog(@"Load resources for iOS 6.1 or earlier");
     } else {
-        [[UINavigationBar appearance] setBarTintColor:[UIColor colorWithRed:97.0/255.0 green:155.0/255.0 blue:21.0/255.0 alpha:1]];
+        [[UINavigationBar appearance] setBarTintColor:navigationBarColor];
         [[UINavigationBar appearance] setTitleTextAttributes: [NSDictionary dictionaryWithObjectsAndKeys:
                                                                [UIColor colorWithRed:255.0 green:255.0 blue:255.0 alpha:1.0], NSForegroundColorAttributeName,                                                               
                                                                [UIFont fontWithName:@"SourceSansPro-Regular" size:24], NSFontAttributeName, nil]];
