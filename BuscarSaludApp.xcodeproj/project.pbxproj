@@ -22,6 +22,9 @@
 		021129D418B301320099F31F /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 021129D218B301320099F31F /* InfoPlist.strings */; };
 		021129D618B301320099F31F /* BuscarSaludAppTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 021129D518B301320099F31F /* BuscarSaludAppTests.m */; };
 		023BDAEE18BEF87900D49862 /* placeholder.png in Resources */ = {isa = PBXBuildFile; fileRef = 023BDAED18BEF87900D49862 /* placeholder.png */; };
+		02417AE218C0021200A8261E /* source-sans-proSemibold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 023BDAF618BF37BD00D49862 /* source-sans-proSemibold.ttf */; };
+		02417AE318C0021800A8261E /* SourceSansPro-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 023BDAEF18BF2DAA00D49862 /* SourceSansPro-Bold.ttf */; };
+		02417AE418C0021C00A8261E /* SourceSansPro-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 023BDAF018BF2DAA00D49862 /* SourceSansPro-Regular.ttf */; };
 		02A70B6818B70E48009C4CDE /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 02A70B6718B70E48009C4CDE /* QuartzCore.framework */; };
 		02A70B6E18B71170009C4CDE /* BrowserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 02A70B6D18B71170009C4CDE /* BrowserViewController.m */; };
 		02A70B7018B72075009C4CDE /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 02A70B6F18B72075009C4CDE /* MapKit.framework */; };
@@ -310,7 +313,10 @@
 				021129C318B301320099F31F /* Images.xcassets in Resources */,
 				021129B218B301320099F31F /* InfoPlist.strings in Resources */,
 				021129BB18B301320099F31F /* Main.storyboard in Resources */,
+				02417AE418C0021C00A8261E /* SourceSansPro-Regular.ttf in Resources */,
+				02417AE218C0021200A8261E /* source-sans-proSemibold.ttf in Resources */,
 				023BDAEE18BEF87900D49862 /* placeholder.png in Resources */,
+				02417AE318C0021800A8261E /* SourceSansPro-Bold.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -15,5 +15,8 @@
 @property (nonatomic, strong) NSNumber *latitude;
 @property (nonatomic, strong) NSNumber *longitude;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *tableTopConstraint;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *tableBottomContstraint;
+
 
 @end

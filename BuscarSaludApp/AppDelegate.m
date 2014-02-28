@@ -16,17 +16,23 @@
     // Override point for customization after application launch.
     self.infoEngine = [[getInfoEngine alloc] initWithHostName:@"ws.buscarsalud.com"];
     UIColor *navigationBarColor = [UIColor colorWithRGB:0x619b1b];
+    UIColor *tabBarColor = [UIColor colorWithRGB:0xf4f8f0];
+    UIColor *tabBarTextColor = [UIColor colorWithRGB:0x75a900];
     
     if (floor(NSFoundationVersionNumber) <= NSFoundationVersionNumber_iOS_6_1) {
         NSLog(@"Load resources for iOS 6.1 or earlier");
     } else {
+        NSLog(@"Load resources for iOS 7 or later");
         [[UINavigationBar appearance] setBarTintColor:navigationBarColor];
         [[UINavigationBar appearance] setTitleTextAttributes: [NSDictionary dictionaryWithObjectsAndKeys:
                                                                [UIColor colorWithRed:255.0 green:255.0 blue:255.0 alpha:1.0], NSForegroundColorAttributeName,                                                               
                                                                [UIFont fontWithName:@"SourceSansPro-Regular" size:24], NSFontAttributeName, nil]];
         [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
-
-        NSLog(@"Load resources for iOS 7 or later");
+        
+        [[UITabBar appearance] setBarTintColor:tabBarColor];
+        [[UITabBar appearance] setTintColor:tabBarTextColor];
+        
+        
     }
     
     return YES;

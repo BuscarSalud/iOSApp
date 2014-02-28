@@ -147,14 +147,10 @@
         [self.contentView addSubview:self.photoContainer];
         [self.contentView addSubview:self.pointsContainer];
         [self.contentView addSubview:self.pointsLabel];
-        if (![self.summaryLabel.text isEqualToString:@""]) {
-            [self.contentView addSubview:self.summaryLabel];
-        }
+        [self.contentView addSubview:self.summaryLabel];
         [self.contentView addSubview:self.phonelabel];
         [self.contentView addSubview:self.streetLabel];
-        if (![self.coloniaLabel.text isEqualToString:@""]) {
-            [self.contentView addSubview:self.coloniaLabel];
-        }
+        [self.contentView addSubview:self.coloniaLabel];
         [self.contentView addSubview:self.cityLabel];
         [self.contentView addSubview:self.titleLabel];
         [self.contentView addSubview:self.schoolLabel];
@@ -181,7 +177,7 @@
     [self.cellBackground alignTop:@"10" leading:@"10" bottom:@"-10" trailing:@"-10" toView:self.cellBackground.superview];
 */
     
-    [self.cellBackground setContentCompressionResistancePriority:UILayoutPriorityRequired forAxis:UILayoutConstraintAxisVertical];
+    //[self.cellBackground setContentCompressionResistancePriority:UILayoutPriorityRequired forAxis:UILayoutConstraintAxisVertical];
     [self.cellBackground autoPinEdgeToSuperviewEdge:ALEdgeTop withInset:9];
     [self.cellBackground autoPinEdgeToSuperviewEdge:ALEdgeLeading withInset:10];
     [self.cellBackground autoPinEdgeToSuperviewEdge:ALEdgeTrailing withInset:10];
@@ -195,7 +191,7 @@
     
     
     [self.nameLabel setContentCompressionResistancePriority:UILayoutPriorityRequired forAxis:UILayoutConstraintAxisVertical];
-    [self.nameLabel autoPinEdgeToSuperviewEdge:ALEdgeTop withInset:20];
+    [self.nameLabel autoPinEdge:ALEdgeTop toEdge:ALEdgeTop ofView:self.cellBackground withOffset:10];
     [self.nameLabel autoPinEdgeToSuperviewEdge:ALEdgeLeading withInset:20];
     [self.nameLabel autoPinEdgeToSuperviewEdge:ALEdgeTrailing withInset:20];
     
@@ -229,13 +225,20 @@
     [self.summaryLabel autoPinEdge:ALEdgeTop toEdge:ALEdgeTop ofView:self.photoContainer withOffset:-2];
     [self.summaryLabel autoPinEdge:ALEdgeLeading toEdge:ALEdgeRight ofView:self.photoContainer withOffset:10];
     [self.summaryLabel autoPinEdgeToSuperviewEdge:ALEdgeTrailing withInset:20];
+    if ([self.phonelabel.text isEqualToString:@""]) {
+        [self.summaryLabel autoPinEdge:ALEdgeBottom toEdge:ALEdgeTop ofView:self.streetLabel withOffset:-10];
+        NSLog(@"No phone number!!!!!!!!!!! name: %@", self.nameLabel.text);
+    }else{
+        [self.summaryLabel autoPinEdge:ALEdgeBottom toEdge:ALEdgeTop ofView:self.phonelabel withOffset:-10];
+    }
+    
     //[self.summaryLabel autoPinEdgeToSuperviewEdge:ALEdgeBottom withInset:10];
     
     [self.phonelabel setContentCompressionResistancePriority:UILayoutPriorityRequired forAxis:UILayoutConstraintAxisVertical];
     if ([self.summaryLabel.text isEqualToString:@""]) {
         [self.phonelabel autoPinEdge:ALEdgeTop toEdge:ALEdgeTop ofView:self.photoContainer withOffset:-2];
     }else{
-        [self.phonelabel autoPinEdge:ALEdgeTop toEdge:ALEdgeBottom ofView:self.summaryLabel withOffset:11];
+        [self.phonelabel autoPinEdge:ALEdgeTop toEdge:ALEdgeBottom ofView:self.summaryLabel];
     }
     [self.phonelabel autoPinEdge:ALEdgeLeading toEdge:ALEdgeLeft ofView:self.summaryLabel];
     //[self.phonelabel autoPinEdge:ALEdgeLeading toEdge:ALEdgeRight ofView:self.photoContainer withOffset:15];
@@ -243,7 +246,15 @@
     //[self.phonelabel autoPinEdgeToSuperviewEdge:ALEdgeBottom withInset:10];
     
     [self.streetLabel setContentCompressionResistancePriority:UILayoutPriorityRequired forAxis:UILayoutConstraintAxisVertical];
-    [self.streetLabel autoPinEdge:ALEdgeTop toEdge:ALEdgeBottom ofView:self.phonelabel];
+    if ([self.phonelabel.text isEqualToString:@""]) {
+        if ([self.summaryLabel.text isEqualToString:@""]) {
+            [self.streetLabel autoPinEdge:ALEdgeTop toEdge:ALEdgeTop ofView:self.photoContainer];
+        }else{
+            [self.streetLabel autoPinEdge:ALEdgeTop toEdge:ALEdgeBottom ofView:self.summaryLabel];
+        }
+    }else{
+        [self.streetLabel autoPinEdge:ALEdgeTop toEdge:ALEdgeBottom ofView:self.phonelabel];
+    }
     [self.streetLabel autoPinEdge:ALEdgeLeading toEdge:ALEdgeLeft ofView:self.summaryLabel];
     [self.streetLabel autoPinEdgeToSuperviewEdge:ALEdgeTrailing withInset:20];
     //[self.streetLabel autoPinEdgeToSuperviewEdge:ALEdgeBottom withInset:10];
@@ -272,7 +283,7 @@
     //[self.titleLabel autoPinEdgeToSuperviewEdge:ALEdgeBottom withInset:10];
 
     [self.schoolLabel setContentCompressionResistancePriority:UILayoutPriorityRequired forAxis:UILayoutConstraintAxisVertical];
-    [self.schoolLabel autoPinEdge:ALEdgeTop toEdge:ALEdgeBottom ofView:self.titleLabel];
+    [self.schoolLabel autoPinEdge:ALEdgeTop toEdge:ALEdgeBottom ofView:self.titleLabel withOffset:5];
     [self.schoolLabel autoPinEdge:ALEdgeLeading toEdge:ALEdgeLeft ofView:self.summaryLabel];
     [self.schoolLabel autoPinEdgeToSuperviewEdge:ALEdgeTrailing withInset:20];
     [self.schoolLabel autoPinEdgeToSuperviewEdge:ALEdgeBottom withInset:15];
@@ -353,23 +364,22 @@
     
     UIFont *sourceSansProRegular13 = [UIFont fontWithName:@"SourceSansPro-Regular" size:13];
     UIFont *sourceSansProRegular10 = [UIFont fontWithName:@"SourceSansPro-Regular" size:10];
-    UIFont *sourceSansProRegular12 = [UIFont fontWithName:@"SourceSansPro-Regular" size:12];
-    UIFont *sourceSansProSemibold17 = [UIFont fontWithName:@"source-sans-proSemibold.ttf" size:17];
-/*    UIFont *sourceSansProSemibold11 = [UIFont fontWithName:@"SourceSansPro-Semibold" size:6];
-    UIFont *sourceSansProBold13 = [UIFont fontWithName:@"SourceSansPro-Bold" size:13];*/
+    UIFont *sourceSansProSemibold17 = [UIFont fontWithName:@"SourceSansPro-Semibold" size:17];
+    UIFont *sourceSansProSemibold12 = [UIFont fontWithName:@"SourceSansPro-Semibold" size:12];
+    UIFont *sourceSansProBold15 = [UIFont fontWithName:@"SourceSansPro-Bold" size:15];
      
     
     
     [self.nameLabel setFont: sourceSansProSemibold17];
     [self.summaryLabel setFont:sourceSansProRegular13];
-    [self.phonelabel setFont:[UIFont fontWithName:@"SourceSansPro-Bold" size:13]];
+    [self.phonelabel setFont:sourceSansProBold15];
     [self.streetLabel setFont:sourceSansProRegular13];
     [self.coloniaLabel setFont:sourceSansProRegular13];
     [self.cityLabel setFont:sourceSansProRegular13];
     [self.titleLabel setFont:sourceSansProRegular13];
     [self.schoolLabel setFont:sourceSansProRegular13];
     [self.pointsLabel setFont:sourceSansProRegular10];
-    [self.seeProfileLabel setFont:sourceSansProRegular12];
+    [self.seeProfileLabel setFont:sourceSansProSemibold12];
      
 }
 
