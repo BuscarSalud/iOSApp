@@ -221,8 +221,13 @@
     [self.seeProfileLabel setContentCompressionResistancePriority:UILayoutPriorityRequired forAxis:UILayoutConstraintAxisVertical];
     [self.seeProfileLabel alignCenterWithView:buttonGradient];
 
+    
+    
     [self.summaryLabel setContentCompressionResistancePriority:UILayoutPriorityRequired forAxis:UILayoutConstraintAxisVertical];
-    [self.summaryLabel autoPinEdge:ALEdgeTop toEdge:ALEdgeTop ofView:self.photoContainer withOffset:-2];
+    [self.summaryLabel autoPinEdge:ALEdgeTop toEdge:ALEdgeBottom ofView:self.nameLabel withOffset:4];
+    [self.summaryLabel autoPinEdgeToSuperviewEdge:ALEdgeLeading withInset:92];
+    [self.summaryLabel autoPinEdge:ALEdgeTrailing toEdge:ALEdgeTrailing ofView:self.nameLabel];
+    /*[self.summaryLabel autoPinEdge:ALEdgeTop toEdge:ALEdgeTop ofView:self.photoContainer withOffset:-2];
     [self.summaryLabel autoPinEdge:ALEdgeLeading toEdge:ALEdgeRight ofView:self.photoContainer withOffset:10];
     [self.summaryLabel autoPinEdgeToSuperviewEdge:ALEdgeTrailing withInset:20];
     if ([self.phonelabel.text isEqualToString:@""]) {
@@ -230,19 +235,20 @@
         NSLog(@"No phone number!!!!!!!!!!! name: %@", self.nameLabel.text);
     }else{
         [self.summaryLabel autoPinEdge:ALEdgeBottom toEdge:ALEdgeTop ofView:self.phonelabel withOffset:-10];
-    }
+    }*/
     
     //[self.summaryLabel autoPinEdgeToSuperviewEdge:ALEdgeBottom withInset:10];
     
     [self.phonelabel setContentCompressionResistancePriority:UILayoutPriorityRequired forAxis:UILayoutConstraintAxisVertical];
     if ([self.summaryLabel.text isEqualToString:@""]) {
         [self.phonelabel autoPinEdge:ALEdgeTop toEdge:ALEdgeTop ofView:self.photoContainer withOffset:-2];
+        [self.phonelabel autoPinEdgeToSuperviewEdge:ALEdgeLeading withInset:92];
     }else{
-        [self.phonelabel autoPinEdge:ALEdgeTop toEdge:ALEdgeBottom ofView:self.summaryLabel];
+        [self.phonelabel autoPinEdge:ALEdgeTop toEdge:ALEdgeBottom ofView:self.summaryLabel withOffset:10];
+        [self.phonelabel autoPinEdge:ALEdgeLeading toEdge:ALEdgeLeading ofView:self.summaryLabel];
     }
-    [self.phonelabel autoPinEdge:ALEdgeLeading toEdge:ALEdgeLeft ofView:self.summaryLabel];
     //[self.phonelabel autoPinEdge:ALEdgeLeading toEdge:ALEdgeRight ofView:self.photoContainer withOffset:15];
-    [self.phonelabel autoPinEdgeToSuperviewEdge:ALEdgeTrailing withInset:20];
+    [self.phonelabel autoPinEdge:ALEdgeTrailing toEdge:ALEdgeTrailing ofView:self.summaryLabel];
     //[self.phonelabel autoPinEdgeToSuperviewEdge:ALEdgeBottom withInset:10];
     
     [self.streetLabel setContentCompressionResistancePriority:UILayoutPriorityRequired forAxis:UILayoutConstraintAxisVertical];
@@ -255,14 +261,14 @@
     }else{
         [self.streetLabel autoPinEdge:ALEdgeTop toEdge:ALEdgeBottom ofView:self.phonelabel];
     }
-    [self.streetLabel autoPinEdge:ALEdgeLeading toEdge:ALEdgeLeft ofView:self.summaryLabel];
-    [self.streetLabel autoPinEdgeToSuperviewEdge:ALEdgeTrailing withInset:20];
+    [self.streetLabel autoPinEdge:ALEdgeLeading toEdge:ALEdgeLeading ofView:self.phonelabel];
+    [self.streetLabel autoPinEdge:ALEdgeTrailing toEdge:ALEdgeTrailing ofView:self.phonelabel];
     //[self.streetLabel autoPinEdgeToSuperviewEdge:ALEdgeBottom withInset:10];
     
     [self.coloniaLabel setContentCompressionResistancePriority:UILayoutPriorityRequired forAxis:UILayoutConstraintAxisVertical];
     [self.coloniaLabel autoPinEdge:ALEdgeTop toEdge:ALEdgeBottom ofView:self.streetLabel];
-    [self.coloniaLabel autoPinEdge:ALEdgeLeading toEdge:ALEdgeLeft ofView:self.summaryLabel];
-    [self.coloniaLabel autoPinEdgeToSuperviewEdge:ALEdgeTrailing withInset:20];
+    [self.coloniaLabel autoPinEdge:ALEdgeLeading toEdge:ALEdgeLeading ofView:self.streetLabel];
+    [self.coloniaLabel autoPinEdge:ALEdgeTrailing toEdge:ALEdgeTrailing ofView:self.streetLabel];
     //[self.coloniaLabel autoPinEdgeToSuperviewEdge:ALEdgeBottom withInset:10];
     
     [self.cityLabel setContentCompressionResistancePriority:UILayoutPriorityRequired forAxis:UILayoutConstraintAxisVertical];
@@ -272,20 +278,20 @@
         [self.cityLabel autoPinEdge:ALEdgeTop toEdge:ALEdgeBottom ofView:self.coloniaLabel];
     }
     [self.cityLabel autoPinEdge:ALEdgeTop toEdge:ALEdgeBottom ofView:self.coloniaLabel];
-    [self.cityLabel autoPinEdge:ALEdgeLeading toEdge:ALEdgeLeft ofView:self.summaryLabel];
-    [self.cityLabel autoPinEdgeToSuperviewEdge:ALEdgeTrailing withInset:20];
+    [self.cityLabel autoPinEdge:ALEdgeLeading toEdge:ALEdgeLeading ofView:self.coloniaLabel];
+    [self.cityLabel autoPinEdge:ALEdgeTrailing toEdge:ALEdgeTrailing ofView:self.coloniaLabel];
     //[self.cityLabel autoPinEdgeToSuperviewEdge:ALEdgeBottom withInset:10];
  
     [self.titleLabel setContentCompressionResistancePriority:UILayoutPriorityRequired forAxis:UILayoutConstraintAxisVertical];
     [self.titleLabel autoPinEdge:ALEdgeTop toEdge:ALEdgeBottom ofView:self.cityLabel withOffset:10];
-    [self.titleLabel autoPinEdge:ALEdgeLeading toEdge:ALEdgeLeft ofView:self.summaryLabel];
-    [self.titleLabel autoPinEdgeToSuperviewEdge:ALEdgeTrailing withInset:20];
+    [self.titleLabel autoPinEdge:ALEdgeLeading toEdge:ALEdgeLeading ofView:self.cityLabel];
+    [self.titleLabel autoPinEdge:ALEdgeTrailing toEdge:ALEdgeTrailing ofView:self.cityLabel];
     //[self.titleLabel autoPinEdgeToSuperviewEdge:ALEdgeBottom withInset:10];
 
     [self.schoolLabel setContentCompressionResistancePriority:UILayoutPriorityRequired forAxis:UILayoutConstraintAxisVertical];
-    [self.schoolLabel autoPinEdge:ALEdgeTop toEdge:ALEdgeBottom ofView:self.titleLabel withOffset:5];
-    [self.schoolLabel autoPinEdge:ALEdgeLeading toEdge:ALEdgeLeft ofView:self.summaryLabel];
-    [self.schoolLabel autoPinEdgeToSuperviewEdge:ALEdgeTrailing withInset:20];
+    [self.schoolLabel autoPinEdge:ALEdgeTop toEdge:ALEdgeBottom ofView:self.titleLabel];
+    [self.schoolLabel autoPinEdge:ALEdgeLeading toEdge:ALEdgeLeading ofView:self.titleLabel];
+    [self.schoolLabel autoPinEdge:ALEdgeTrailing toEdge:ALEdgeTrailing ofView:self.titleLabel];
     [self.schoolLabel autoPinEdgeToSuperviewEdge:ALEdgeBottom withInset:15];
     
    
