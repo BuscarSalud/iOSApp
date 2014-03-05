@@ -10,7 +10,7 @@
 
 @interface getInfoEngine : MKNetworkEngine
 
-typedef void (^InfoResponseBlock)(NSDictionary* infoDictionary);
+typedef void (^InfoResponseBlock)(NSMutableArray* infoDictionary);
 
 -(void) getDoctorsList:(NSMutableDictionary*) params completionHandler:(InfoResponseBlock) docsBlock errorHandler:(MKNKErrorBlock) errorBlock;
 @end

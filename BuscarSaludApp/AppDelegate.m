@@ -14,7 +14,7 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
-    self.infoEngine = [[getInfoEngine alloc] initWithHostName:@"ws.buscarsalud.com"];
+    self.infoEngine = [[getInfoEngine alloc] initWithHostName:@"ws.buscarsalud.local"];
     UIColor *navigationBarColor = [UIColor colorWithRGB:0x619b1b];
     UIColor *tabBarColor = [UIColor colorWithRGB:0xf4f8f0];
     UIColor *tabBarTextColor = [UIColor colorWithRGB:0x75a900];
