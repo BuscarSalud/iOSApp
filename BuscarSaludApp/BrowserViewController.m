@@ -11,15 +11,17 @@
 #import "TableViewCell.h"
 #import "UIView+AutoLayout.h"
 #import <QuartzCore/QuartzCore.h>
-//#import <SDWebImage/UIImageView+WebCache.h>
 #import "UIImageView+UIActivityIndicatorForSDWebImage.h"
 
 
 static NSString *CellIdentifier = @"CellIdentifier";
+static NSString *LoadingCellIdentifier = @"LoadingCellIdentifier";
 
 #define kNavBarDefaultPosition CGPointMake(160,22)
 
 @interface BrowserViewController ()
+
+@property (nonatomic, assign) BOOL deleteRow;
 
 @end
 
@@ -27,7 +29,7 @@ static NSString *CellIdentifier = @"CellIdentifier";
     CLLocationManager *locationManager;
     double lat;
     double lon;
-    NSDictionary *doctorsList;
+    NSMutableArray *doctorsList;
     CALayer *navbarLayer;
 
 }
@@ -48,14 +50,18 @@ static NSString *CellIdentifier = @"CellIdentifier";
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+   // self.lastRow = NO;
 	// Do any additional setup after loading the view.
     
+    self.deleteRow = NO;
     navbarLayer = nil;
     navbarLayer = self.navigationController.navigationBar.layer;
     
     self.view.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     self.tableView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     [self.tableView registerClass:[TableViewCell class] forCellReuseIdentifier:CellIdentifier];
+    
+    
     
     
     // Get location
@@ -141,7 +147,7 @@ static NSString *CellIdentifier = @"CellIdentifier";
     [postParams setValue:@"10" forKey:@"limite"];
 
     //Makes the request
-    [ApplicationDelegate.infoEngine getDoctorsList:postParams completionHandler:^(NSDictionary *docsList){
+    [ApplicationDelegate.infoEngine getDoctorsList:postParams completionHandler:^(NSMutableArray *docsList){
         //When the list is null means: No doctors on the list.
         if ([doctorsList isKindOfClass:[NSNull class]]) {
             UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Alerta"
@@ -151,10 +157,26 @@ static NSString *CellIdentifier = @"CellIdentifier";
                                                   otherButtonTitles:nil];
             [alert show];
         }else{
+            //NSLog(@"Count doctors: %d", [doctorsList count]);
             doctorsList = docsList;
+            /*self.doctorsStatic = docsList;
+            NSLog(@"Count staticDoctors: %d", [self.doctorsStatic count]);
+            NSDictionary *doctorsWithExtraRow = [[NSDictionary alloc]initWithObjectsAndKeys:@"loadMore",@"doctor11", nil];
+//            [doctorsWithExtraRow setValue:@"loadMore" forKey:@"doctor11"];
+            doctorsList = [NSMutableDictionary dictionaryWithCapacity:11];
+            [doctorsList addEntriesFromDictionary:self.doctorsStatic];
+            [doctorsList addEntriesFromDictionary:doctorsWithExtraRow];
+            NSLog(@"Count doctors: %d", [doctorsList count]);*/
+            
             [self.tableView reloadData];
+            /*self.lastRow = YES;
+            NSIndexPath *lastIndexPath = [NSIndexPath indexPathForRow:[doctorsList count] + 1 inSection:0];
+            [self.tableView insertRowsAtIndexPaths:@[lastIndexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+            self.lastRow = NO;*/
+
             NSLog(@"%@", doctorsList);
             NSLog(@"Count doctors: %d", [doctorsList count]);
+            NSLog(@"object at 4 = %@", [doctorsList objectAtIndex:4]);
         }
     }errorHandler:^(NSError *error) {
         //Handling an error in the url request.
@@ -167,6 +189,8 @@ static NSString *CellIdentifier = @"CellIdentifier";
     }];
 }
 
+
+
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -176,90 +200,161 @@ static NSString *CellIdentifier = @"CellIdentifier";
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [doctorsList count];
+    int count;
+    if (self.deleteRow) {
+        count = [doctorsList count];
+    } else{
+        count = [doctorsList count] + 1;
+    }
+    
+    return count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    TableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
-    NSString *doctor = [NSString stringWithFormat:@"doctor%d",indexPath.row];
-    
-    cell.nameLabel.text = [[doctorsList objectForKey:doctor] objectForKey:@"nombre"];
-    cell.phonelabel.text = [[doctorsList objectForKey:doctor] objectForKey:@"telefono"];
-    cell.streetLabel.text = [[doctorsList objectForKey:doctor] objectForKey:@"calle"];
-    cell.coloniaLabel.text = [[doctorsList objectForKey:doctor] objectForKey:@"colonia"];
-    cell.cityLabel.text = [[doctorsList objectForKey:doctor] objectForKey:@"ciudad"];
-    cell.titleLabel.text = [[doctorsList objectForKey:doctor] objectForKey:@"titulo"];
-    cell.schoolLabel.text = [[doctorsList objectForKey:doctor] objectForKey:@"escuela"];
-    
-    NSString *pointsText = [NSString stringWithFormat:@"%@ puntos", [[doctorsList objectForKey:doctor] objectForKey:@"puntos"]];
-    cell.pointsLabel.text = pointsText;
-    
-    if ([[[doctorsList objectForKey:doctor] objectForKey:@"img"] isKindOfClass:[NSNull class]]){
-        [cell.photoImageView setImage:[UIImage imageNamed:@"placeholder.png"]];
+    if (indexPath.row == [doctorsList count]) {
+    //if (self.lastRow) {
+        
+        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:LoadingCellIdentifier];
+        NSLog(@"Ultima celda!");
+        
+        return cell;
     }else{
-        NSString *photo = [[doctorsList objectForKey:doctor] objectForKey:@"img"];
-        [cell.photoImageView setImageWithURL:[NSURL URLWithString:photo] placeholderImage:[UIImage imageNamed:@"placeholder.png"] usingActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
+        TableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+        //NSString *doctor = [NSString stringWithFormat:@"doctor%d",indexPath.row];
+        
+        cell.nameLabel.text = [[doctorsList objectAtIndex:indexPath.row] objectForKey:@"nombre"];
+        cell.phonelabel.text = [[doctorsList objectAtIndex:indexPath.row] objectForKey:@"telefono"];
+        cell.streetLabel.text = [[doctorsList objectAtIndex:indexPath.row] objectForKey:@"calle"];
+        cell.coloniaLabel.text = [[doctorsList objectAtIndex:indexPath.row] objectForKey:@"colonia"];
+        cell.cityLabel.text = [[doctorsList objectAtIndex:indexPath.row] objectForKey:@"ciudad"];
+        cell.titleLabel.text = [[doctorsList objectAtIndex:indexPath.row] objectForKey:@"titulo"];
+        cell.schoolLabel.text = [[doctorsList objectAtIndex:indexPath.row] objectForKey:@"escuela"];
+        
+        NSString *pointsText = [NSString stringWithFormat:@"%@ puntos", [[doctorsList objectAtIndex:indexPath.row] objectForKey:@"puntos"]];
+        cell.pointsLabel.text = pointsText;
+        
+        if ([[[doctorsList objectAtIndex:indexPath.row] objectForKey:@"img"] isKindOfClass:[NSNull class]]){
+            [cell.photoImageView setImage:[UIImage imageNamed:@"placeholder.png"]];
+        }else{
+            NSString *photo = [[doctorsList objectAtIndex:indexPath.row] objectForKey:@"img"];
+            [cell.photoImageView setImageWithURL:[NSURL URLWithString:photo] placeholderImage:[UIImage imageNamed:@"placeholder.png"] usingActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
+        }
+        
+        
+        /*
+         cell.nameLabel.text = [[doctorsList objectForKey:doctor] objectForKey:@"nombre"];
+         cell.phonelabel.text = [[doctorsList objectForKey:doctor] objectForKey:@"telefono"];
+         cell.streetLabel.text = [[doctorsList objectForKey:doctor] objectForKey:@"calle"];
+         cell.coloniaLabel.text = [[doctorsList objectForKey:doctor] objectForKey:@"colonia"];
+         cell.cityLabel.text = [[doctorsList objectForKey:doctor] objectForKey:@"ciudad"];
+         cell.titleLabel.text = [[doctorsList objectForKey:doctor] objectForKey:@"titulo"];
+         cell.schoolLabel.text = [[doctorsList objectForKey:doctor] objectForKey:@"escuela"];
+         
+         NSString *pointsText = [NSString stringWithFormat:@"%@ puntos", [[doctorsList objectForKey:doctor] objectForKey:@"puntos"]];
+         cell.pointsLabel.text = pointsText;
+         
+         if ([[[doctorsList objectForKey:doctor] objectForKey:@"img"] isKindOfClass:[NSNull class]]){
+         [cell.photoImageView setImage:[UIImage imageNamed:@"placeholder.png"]];
+         }else{
+         NSString *photo = [[doctorsList objectForKey:doctor] objectForKey:@"img"];
+         [cell.photoImageView setImageWithURL:[NSURL URLWithString:photo] placeholderImage:[UIImage imageNamed:@"placeholder.png"] usingActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
+         }
+         
+         NSString *summaryText = [[doctorsList objectForKey:doctor] objectForKey:@"extracto"];
+         
+         */
+        
+        
+        NSString *summaryText = [[doctorsList objectAtIndex:indexPath.row] objectForKey:@"extracto"];
+        
+        NSMutableAttributedString *bodyAttributedText = [[NSMutableAttributedString alloc] initWithString:summaryText];
+        NSMutableParagraphStyle *bodyParagraphStyle = [[NSMutableParagraphStyle alloc] init];
+        [bodyParagraphStyle setLineSpacing:0.0f];
+        [bodyAttributedText addAttribute:NSParagraphStyleAttributeName value:bodyParagraphStyle range:NSMakeRange(0, summaryText.length)];
+        cell.summaryLabel.attributedText = bodyAttributedText;
+        
+        [cell updateFonts];
+        
+        [cell setNeedsUpdateConstraints];
+        [cell updateConstraintsIfNeeded];
+        
+        return cell;
     }
     
-    NSString *summaryText = [[doctorsList objectForKey:doctor] objectForKey:@"extracto"];
-    NSMutableAttributedString *bodyAttributedText = [[NSMutableAttributedString alloc] initWithString:summaryText];
-    NSMutableParagraphStyle *bodyParagraphStyle = [[NSMutableParagraphStyle alloc] init];
-    [bodyParagraphStyle setLineSpacing:0.0f];
-    [bodyAttributedText addAttribute:NSParagraphStyleAttributeName value:bodyParagraphStyle range:NSMakeRange(0, summaryText.length)];
-    cell.summaryLabel.attributedText = bodyAttributedText;
     
-    [cell updateFonts];
-    
-    [cell setNeedsUpdateConstraints];
-    [cell updateConstraintsIfNeeded];
-    
-    return cell;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    TableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    NSString *doctor = [NSString stringWithFormat:@"doctor%d",indexPath.row];
-    
-    cell.nameLabel.text = [[doctorsList objectForKey:doctor] objectForKey:@"nombre"];
-    cell.phonelabel.text = [[doctorsList objectForKey:doctor] objectForKey:@"telefono"];
-    cell.streetLabel.text = [[doctorsList objectForKey:doctor] objectForKey:@"calle"];
-    cell.coloniaLabel.text = [[doctorsList objectForKey:doctor] objectForKey:@"colonia"];
-    cell.cityLabel.text = [[doctorsList objectForKey:doctor] objectForKey:@"ciudad"];
-    cell.titleLabel.text = [[doctorsList objectForKey:doctor] objectForKey:@"titulo"];
-    cell.schoolLabel.text = [[doctorsList objectForKey:doctor] objectForKey:@"escuela"];
-    
-    NSString *pointsText = [NSString stringWithFormat:@"%@ puntos", [[doctorsList objectForKey:doctor] objectForKey:@"puntos"]];
-    cell.pointsLabel.text = pointsText;
-    
-    NSString *summaryText = [[doctorsList objectForKey:doctor] objectForKey:@"extracto"];
-    NSMutableAttributedString *bodyAttributedText = [[NSMutableAttributedString alloc] initWithString:summaryText];
-    NSMutableParagraphStyle *bodyParagraphStyle = [[NSMutableParagraphStyle alloc] init];
-    [bodyParagraphStyle setLineSpacing:0.0f];
-    [bodyAttributedText addAttribute:NSParagraphStyleAttributeName value:bodyParagraphStyle range:NSMakeRange(0, summaryText.length)];
-    cell.summaryLabel.attributedText = bodyAttributedText;
-    
-    [cell updateFonts];
-    
-    [cell setNeedsUpdateConstraints];
-    [cell updateConstraintsIfNeeded];
-    
-    cell.bounds = CGRectMake(0.0f, 0.0f, CGRectGetWidth(tableView.bounds), CGRectGetHeight(cell.bounds));
-    
-    [cell setNeedsLayout];
-    [cell layoutIfNeeded];
-    
-    CGFloat height = [cell.contentView systemLayoutSizeFittingSize:UILayoutFittingCompressedSize].height;
-    
-    height += 1;
-    
-    return height;
+    if (indexPath.row == [doctorsList count] ) {
+        /*UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:LoadingCellIdentifier];
+        cell.bounds = CGRectMake(0.0f, 0.0f, CGRectGetWidth(tableView.bounds), CGRectGetHeight(cell.bounds));
+        CGFloat height = [cell.contentView systemLayoutSizeFittingSize:UILayoutFittingCompressedSize].height;
+        
+        [cell setNeedsLayout];
+        [cell layoutIfNeeded];
+        height += 1;*/
+        
+        CGFloat height = 50;
+        
+        return height;
+    }else{
+        TableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+        //NSString *doctor = [NSString stringWithFormat:@"doctor%d",indexPath.row];
+
+        cell.nameLabel.text = [[doctorsList objectAtIndex:indexPath.row] objectForKey:@"nombre"];
+        cell.phonelabel.text = [[doctorsList objectAtIndex:indexPath.row] objectForKey:@"telefono"];
+        cell.streetLabel.text = [[doctorsList objectAtIndex:indexPath.row] objectForKey:@"calle"];
+        cell.coloniaLabel.text = [[doctorsList objectAtIndex:indexPath.row] objectForKey:@"colonia"];
+        cell.cityLabel.text = [[doctorsList objectAtIndex:indexPath.row] objectForKey:@"ciudad"];
+        cell.titleLabel.text = [[doctorsList objectAtIndex:indexPath.row] objectForKey:@"titulo"];
+        cell.schoolLabel.text = [[doctorsList objectAtIndex:indexPath.row] objectForKey:@"escuela"];
+        
+        NSString *pointsText = [NSString stringWithFormat:@"%@ puntos", [[doctorsList objectAtIndex:indexPath.row] objectForKey:@"puntos"]];
+        cell.pointsLabel.text = pointsText;
+        
+        if ([[[doctorsList objectAtIndex:indexPath.row] objectForKey:@"img"] isKindOfClass:[NSNull class]]){
+            [cell.photoImageView setImage:[UIImage imageNamed:@"placeholder.png"]];
+        }else{
+            NSString *photo = [[doctorsList objectAtIndex:indexPath.row] objectForKey:@"img"];
+            [cell.photoImageView setImageWithURL:[NSURL URLWithString:photo] placeholderImage:[UIImage imageNamed:@"placeholder.png"] usingActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
+        }
+        
+        
+        
+        NSString *summaryText = [[doctorsList objectAtIndex:indexPath.row] objectForKey:@"extracto"];
+        
+        NSMutableAttributedString *bodyAttributedText = [[NSMutableAttributedString alloc] initWithString:summaryText];
+        NSMutableParagraphStyle *bodyParagraphStyle = [[NSMutableParagraphStyle alloc] init];
+        [bodyParagraphStyle setLineSpacing:0.0f];
+        [bodyAttributedText addAttribute:NSParagraphStyleAttributeName value:bodyParagraphStyle range:NSMakeRange(0, summaryText.length)];
+        cell.summaryLabel.attributedText = bodyAttributedText;
+        
+        
+        
+        [cell updateFonts];
+        
+        [cell setNeedsUpdateConstraints];
+        [cell updateConstraintsIfNeeded];
+        
+        cell.bounds = CGRectMake(0.0f, 0.0f, CGRectGetWidth(tableView.bounds), CGRectGetHeight(cell.bounds));
+        
+        [cell setNeedsLayout];
+        [cell layoutIfNeeded];
+        
+        CGFloat height = [cell.contentView systemLayoutSizeFittingSize:UILayoutFittingCompressedSize].height;
+        
+        height += 1;
+        
+        return height;
+    }
 }
 
 - (CGFloat)tableView:(UITableView *)tableView estimatedHeightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 300.0f;
+    //return [self tableView:tableView heightForRowAtIndexPath:indexPath];
+    return UITableViewAutomaticDimension;
 }
 
 
@@ -268,14 +363,24 @@ static NSString *CellIdentifier = @"CellIdentifier";
     if (scrollView.contentOffset.y <= 65 && scrollView.contentOffset.y > 0) {
         [self animateNavigationBar:scrollView.contentOffset.y];
     }
+    if (scrollView.contentOffset.y <= 0) {
+        navbarLayer.position = CGPointMake(navbarLayer.position.x, self.navigationController.navigationBar.frame.size.height - 2);
+        [[self tableTopConstraint] setConstant:0];
+        [UIView animateWithDuration:0.0 animations:^{
+            [[self tableView] layoutIfNeeded];
+        }];
+    }
+    if (scrollView.contentOffset.y > 64) {
+        navbarLayer.position = CGPointMake(navbarLayer.position.x, -self.navigationController.navigationBar.frame.size.height);
+    }
 }
 
 - (void)animateNavigationBar:(CGFloat)offSet
 {
 
     [UIView animateWithDuration:0.0 animations:^{
-        navbarLayer.position =CGPointMake(navbarLayer.position.x, 42-offSet);
-        [[self tableTopConstraint] setConstant:-offSet];
+        navbarLayer.position =CGPointMake(navbarLayer.position.x, self.navigationController.navigationBar.frame.size.height - offSet - 2);
+        [[self tableTopConstraint] setConstant:-offSet-2];
         [UIView animateWithDuration:0.0 animations:^{
             [[self tableView] layoutIfNeeded];
         }];
@@ -283,4 +388,30 @@ static NSString *CellIdentifier = @"CellIdentifier";
     }];
 }
 
+- (IBAction)loadMoreResults:(id)sender {
+    /*
+    NSMutableArray *rowsToDelete = [NSMutableArray new];
+    [rowsToDelete addObject:[NSIndexPath indexPathForRow:11 inSection:0]];
+    
+    [self.tableView deleteRowsAtIndexPaths:rowsToDelete withRowAnimation:UITableViewRowAnimationAutomatic];
+    [self.tableView reloadData];
+    */
+    
+    NSMutableArray *rowsToDelete = [NSMutableArray new];
+    //for (NSUInteger i = 10; i < [doctorsList count]; i++) {
+        [rowsToDelete addObject:[NSIndexPath indexPathForRow:10 inSection:0]];
+    //}
+    
+    //doctorsList = [[NSMutableDictionary alloc] init];
+    //[doctorsList removeObjectForKey:@"doctor11"];
+    //[doctorsList removeObjectAtIndex:10];
+    
+    //[self.tableView reloadData];
+    self.deleteRow = YES;
+    [self.tableView deleteRowsAtIndexPaths:rowsToDelete withRowAnimation:UITableViewRowAnimationFade];
+    //[self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:9 inSection:0] atScrollPosition:UITableViewScrollPositionMiddle animated:NO];
+
+    
+    //[self.tableView reloadData];
+}
 @end

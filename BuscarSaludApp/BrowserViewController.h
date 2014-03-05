@@ -17,6 +17,7 @@
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *tableTopConstraint;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *tableBottomContstraint;
-
+@property (nonatomic, strong) NSDictionary *doctorsStatic;
+- (IBAction)loadMoreResults:(id)sender;
 
 @end
