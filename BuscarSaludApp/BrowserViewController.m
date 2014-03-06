@@ -31,6 +31,10 @@ static NSString *LoadingCellIdentifier = @"LoadingCellIdentifier";
     double lon;
     NSMutableArray *doctorsList;
     CALayer *navbarLayer;
+    BOOL nextPage;
+    BOOL isInsertingRow;
+    int lastIndexPathRow;
+    int pageNumber;
 
 }
 
@@ -61,7 +65,7 @@ static NSString *LoadingCellIdentifier = @"LoadingCellIdentifier";
     self.tableView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     [self.tableView registerClass:[TableViewCell class] forCellReuseIdentifier:CellIdentifier];
     
-    
+    doctorsList = [[NSMutableArray alloc]init];
     
     
     // Get location
@@ -72,6 +76,8 @@ static NSString *LoadingCellIdentifier = @"LoadingCellIdentifier";
 
     // Remove table cell separator
     [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
+    
+    pageNumber = 1;
     
 }
 
@@ -145,6 +151,10 @@ static NSString *LoadingCellIdentifier = @"LoadingCellIdentifier";
     [postParams setValue:latitudeUser forKey:@"lat"];
     [postParams setValue:longitudeUser forKey:@"lon"];
     [postParams setValue:@"10" forKey:@"limite"];
+    if (nextPage) {
+        NSString *pageNumberStringValue = [NSString stringWithFormat:@"%d", pageNumber];
+        [postParams setValue:pageNumberStringValue forKey:@"pagina"];
+    }
 
     //Makes the request
     [ApplicationDelegate.infoEngine getDoctorsList:postParams completionHandler:^(NSMutableArray *docsList){
@@ -157,26 +167,29 @@ static NSString *LoadingCellIdentifier = @"LoadingCellIdentifier";
                                                   otherButtonTitles:nil];
             [alert show];
         }else{
-            //NSLog(@"Count doctors: %d", [doctorsList count]);
-            doctorsList = docsList;
-            /*self.doctorsStatic = docsList;
-            NSLog(@"Count staticDoctors: %d", [self.doctorsStatic count]);
-            NSDictionary *doctorsWithExtraRow = [[NSDictionary alloc]initWithObjectsAndKeys:@"loadMore",@"doctor11", nil];
-//            [doctorsWithExtraRow setValue:@"loadMore" forKey:@"doctor11"];
-            doctorsList = [NSMutableDictionary dictionaryWithCapacity:11];
-            [doctorsList addEntriesFromDictionary:self.doctorsStatic];
-            [doctorsList addEntriesFromDictionary:doctorsWithExtraRow];
-            NSLog(@"Count doctors: %d", [doctorsList count]);*/
+            if (nextPage) {
+                NSLog(@"aqui valor de docsList = %@", docsList);
+                NSMutableArray *tempDoctors = [doctorsList mutableCopy];
+                NSMutableArray *newDoctors = [docsList mutableCopy];
+                doctorsList = [[NSMutableArray alloc]init];
+                [doctorsList addObjectsFromArray:tempDoctors];
+                [doctorsList addObjectsFromArray:newDoctors];
+                
+                /*for (NSMutableArray *doctors in tempDoctors){
+                    [doctorsList addObject:doctors];
+                }*/
+                NSLog(@"New list count = %d", [doctorsList count]);
+                NSLog(@"New full list of doctors = %@", doctorsList);
+                isInsertingRow = YES;
+                [self.tableView reloadData];
+                [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:lastIndexPathRow inSection:0] atScrollPosition:UITableViewScrollPositionNone animated:YES];
+                isInsertingRow = NO;
+            }else{
+                doctorsList = docsList;
+                
+                [self.tableView reloadData];
+            }
             
-            [self.tableView reloadData];
-            /*self.lastRow = YES;
-            NSIndexPath *lastIndexPath = [NSIndexPath indexPathForRow:[doctorsList count] + 1 inSection:0];
-            [self.tableView insertRowsAtIndexPaths:@[lastIndexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
-            self.lastRow = NO;*/
-
-            NSLog(@"%@", doctorsList);
-            NSLog(@"Count doctors: %d", [doctorsList count]);
-            NSLog(@"object at 4 = %@", [doctorsList objectAtIndex:4]);
         }
     }errorHandler:^(NSError *error) {
         //Handling an error in the url request.
@@ -217,6 +230,7 @@ static NSString *LoadingCellIdentifier = @"LoadingCellIdentifier";
         
         UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:LoadingCellIdentifier];
         NSLog(@"Ultima celda!");
+        lastIndexPathRow = indexPath.row;
         
         return cell;
     }else{
@@ -353,8 +367,15 @@ static NSString *LoadingCellIdentifier = @"LoadingCellIdentifier";
 
 - (CGFloat)tableView:(UITableView *)tableView estimatedHeightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    //return [self tableView:tableView heightForRowAtIndexPath:indexPath];
-    return UITableViewAutomaticDimension;
+    if (isInsertingRow) {
+        // A constraint exception will be thrown if the estimated row height for an inserted row is greater
+        // than the actual height for that row. In order to work around this, we return the actual height
+        // for the the row when inserting into the table view.
+        // See: https://github.com/caoimghgin/TableViewCellWithAutoLayout/issues/6
+        return [self tableView:tableView heightForRowAtIndexPath:indexPath];
+    } else {
+        return 500.0f;
+    }
 }
 
 
@@ -389,29 +410,10 @@ static NSString *LoadingCellIdentifier = @"LoadingCellIdentifier";
 }
 
 - (IBAction)loadMoreResults:(id)sender {
-    /*
-    NSMutableArray *rowsToDelete = [NSMutableArray new];
-    [rowsToDelete addObject:[NSIndexPath indexPathForRow:11 inSection:0]];
     
-    [self.tableView deleteRowsAtIndexPaths:rowsToDelete withRowAnimation:UITableViewRowAnimationAutomatic];
-    [self.tableView reloadData];
-    */
+    nextPage = YES;
+    ++pageNumber;
+    [self getLocations:[latitude stringValue] andLongitude:[longitude stringValue]];
     
-    NSMutableArray *rowsToDelete = [NSMutableArray new];
-    //for (NSUInteger i = 10; i < [doctorsList count]; i++) {
-        [rowsToDelete addObject:[NSIndexPath indexPathForRow:10 inSection:0]];
-    //}
-    
-    //doctorsList = [[NSMutableDictionary alloc] init];
-    //[doctorsList removeObjectForKey:@"doctor11"];
-    //[doctorsList removeObjectAtIndex:10];
-    
-    //[self.tableView reloadData];
-    self.deleteRow = YES;
-    [self.tableView deleteRowsAtIndexPaths:rowsToDelete withRowAnimation:UITableViewRowAnimationFade];
-    //[self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:9 inSection:0] atScrollPosition:UITableViewScrollPositionMiddle animated:NO];
-
-    
-    //[self.tableView reloadData];
 }
 @end

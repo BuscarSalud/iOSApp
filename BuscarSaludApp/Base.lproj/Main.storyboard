@@ -8,7 +8,9 @@
         <scene sceneID="Xln-sg-Yyx">
             <objects>
                 <navigationController definesPresentationContext="YES" id="QBe-Hn-fNx" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Directorio" id="rGq-iv-Evl"/>
+                    <tabBarItem key="tabBarItem" title="Directorio" image="directory-icon.png" id="rGq-iv-Evl">
+                        <inset key="imageInsets" minX="-1" minY="-1" maxX="-1" maxY="-1"/>
+                    </tabBarItem>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="QQI-Me-J9A">
                         <rect key="frame" x="0.0" y="0.0" width="0.0" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -85,7 +87,33 @@
                             <constraint firstAttribute="bottom" secondItem="5Mc-jP-flw" secondAttribute="bottom" id="f5e-eG-Urr"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Directorio Médico" id="b7k-LF-PJj"/>
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" title="Directorio Médico" id="b7k-LF-PJj">
+                        <barButtonItem key="leftBarButtonItem" id="Nl4-ek-lNo">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="kkf-cy-Yk9">
+                                <rect key="frame" x="16" y="10" width="22" height="24"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" image="magnify.png">
+                                    <color key="titleShadowColor" red="0.3803921938" green="0.60784316059999999" blue="0.17254902420000001" alpha="1" colorSpace="deviceRGB"/>
+                                </state>
+                            </button>
+                            <color key="tintColor" red="0.34509804840000002" green="0.55686277149999996" blue="0.14901961389999999" alpha="1" colorSpace="deviceRGB"/>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" id="6yg-vz-AfD">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" reversesTitleShadowWhenHighlighted="YES" lineBreakMode="middleTruncation" id="LPE-iW-HIR">
+                                <rect key="frame" x="282" y="10" width="22" height="24"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <color key="tintColor" red="0.3803921938" green="0.60784316059999999" blue="0.17254902420000001" alpha="1" colorSpace="deviceRGB"/>
+                                <state key="normal" image="user.png">
+                                    <color key="titleColor" red="0.34509804840000002" green="0.55686277149999996" blue="0.14901961389999999" alpha="1" colorSpace="deviceRGB"/>
+                                    <color key="titleShadowColor" red="0.34509804840000002" green="0.55686277149999996" blue="0.14901961389999999" alpha="1" colorSpace="deviceRGB"/>
+                                </state>
+                            </button>
+                            <color key="tintColor" red="0.34509804840000002" green="0.55686277149999996" blue="0.14901961389999999" alpha="1" colorSpace="deviceRGB"/>
+                        </barButtonItem>
+                    </navigationItem>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="tableTopConstraint" destination="YuX-uU-j35" id="DhS-q1-3lo"/>
                         <outlet property="tableView" destination="5Mc-jP-flw" id="EAK-yN-hW7"/>
@@ -133,7 +161,7 @@
                             <constraint firstAttribute="centerY" secondItem="DcM-Fx-MKR" secondAttribute="centerY" id="lHZ-e8-ii2"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Second" image="second" id="Z7h-1E-pvt"/>
+                    <tabBarItem key="tabBarItem" title="Privacidad" image="book-icon.png" id="Z7h-1E-pvt"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3qq-4t-Ow8" sceneMemberID="firstResponder"/>
             </objects>
@@ -160,7 +188,10 @@
         </scene>
     </scenes>
     <resources>
-        <image name="second" width="30" height="30"/>
+        <image name="book-icon.png" width="25" height="24"/>
+        <image name="directory-icon.png" width="30" height="25"/>
+        <image name="magnify.png" width="45" height="49"/>
+        <image name="user.png" width="41" height="44"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>

@@ -23,15 +23,18 @@
         NSLog(@"Load resources for iOS 6.1 or earlier");
     } else {
         NSLog(@"Load resources for iOS 7 or later");
+        [[UINavigationBar appearance] setTitleVerticalPositionAdjustment:2.0f forBarMetrics:UIBarMetricsDefault];
         [[UINavigationBar appearance] setBarTintColor:navigationBarColor];
         [[UINavigationBar appearance] setTitleTextAttributes: [NSDictionary dictionaryWithObjectsAndKeys:
                                                                [UIColor colorWithRed:255.0 green:255.0 blue:255.0 alpha:1.0], NSForegroundColorAttributeName,                                                               
-                                                               [UIFont fontWithName:@"SourceSansPro-Regular" size:24], NSFontAttributeName, nil]];
+                                                               [UIFont fontWithName:@"SourceSansPro-Regular" size:23], NSFontAttributeName, nil]];
+        
         [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
         
+        [[UITabBarItem appearance] setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIFont fontWithName:@"SourceSansPro-Regular" size:12],NSFontAttributeName, nil] forState:UIControlStateNormal];
+        //[[UITabBarItem appearance] setTitlePositionAdjustment:UIOffsetMake(0.0f, 0.0f)];
         [[UITabBar appearance] setBarTintColor:tabBarColor];
         [[UITabBar appearance] setTintColor:tabBarTextColor];
-        
         
     }
     
