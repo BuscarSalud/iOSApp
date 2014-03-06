@@ -52,13 +52,17 @@
         //self.contentView.layer.cornerRadius = 10;
         
         self.cellBackground = [UIView newAutoLayoutView];
-        self.cellBackground.layer.cornerRadius = 10;
+        self.cellBackground.layer.cornerRadius = 7;
         self.cellBackground.layer.borderColor = cellBackgroundBorderColor.CGColor;
-        self.cellBackground.layer.borderWidth = 0.8f;
+        self.cellBackground.layer.borderWidth = 1.0f;
+        
         self.cellBackground.layer.shadowColor = cellBackgroundBorderColor.CGColor;
-        self.cellBackground.layer.shadowOffset = CGSizeMake(0.0, 10.0);
-        //self.cellBackground.layer.shadowOpacity = 1.0;
-        //self.cellBackground.layer.shadowRadius = 20.0;
+        self.cellBackground.layer.shadowOffset = CGSizeMake(0.0, 0.0);
+        self.cellBackground.layer.shadowOpacity = 0.65f;
+        self.cellBackground.layer.shadowRadius = 1.0f;
+        self.cellBackground.layer.shouldRasterize = YES;
+        self.cellBackground.opaque = YES;
+        
         [self.cellBackground setBackgroundColor:cellBackgroundColor];
         
         self.photoContainer = [UIView newAutoLayoutView];
@@ -73,7 +77,7 @@
         buttonGradient = [[GRKGradientView alloc]init];
         //buttonGradient.gradientOrientation = GRKGradientOrientationDown;
         buttonGradient.gradientColors = [NSArray arrayWithObjects:color1Gradient, color2Gradient, nil];
-        buttonGradient.layer.cornerRadius = 5;
+        buttonGradient.layer.cornerRadius = 3;
         [[buttonGradient layer] setMasksToBounds:YES];
         
         
