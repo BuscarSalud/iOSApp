@@ -29,6 +29,9 @@
 		02A70B6E18B71170009C4CDE /* BrowserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 02A70B6D18B71170009C4CDE /* BrowserViewController.m */; };
 		02A70B7018B72075009C4CDE /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 02A70B6F18B72075009C4CDE /* MapKit.framework */; };
 		02A70B7418B72975009C4CDE /* getInfoEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = 02A70B7318B72975009C4CDE /* getInfoEngine.m */; };
+		02AB873918CD8AE600C68955 /* FirstTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 02AB873818CD8AE600C68955 /* FirstTableViewCell.m */; };
+		02AB873C18CD974200C68955 /* firstCellIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 02AB873A18CD974200C68955 /* firstCellIcon.png */; };
+		02AB873D18CD974200C68955 /* firstCellIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 02AB873B18CD974200C68955 /* firstCellIcon@2x.png */; };
 		02D945F818C8432F0091B6FE /* user@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 02D945F418C8432F0091B6FE /* user@2x.png */; };
 		02D945F918C8432F0091B6FE /* user.png in Resources */ = {isa = PBXBuildFile; fileRef = 02D945F518C8432F0091B6FE /* user.png */; };
 		02D945FA18C8432F0091B6FE /* magnify@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 02D945F618C8432F0091B6FE /* magnify@2x.png */; };
@@ -84,6 +87,10 @@
 		02A70B6F18B72075009C4CDE /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		02A70B7218B72975009C4CDE /* getInfoEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = getInfoEngine.h; sourceTree = "<group>"; };
 		02A70B7318B72975009C4CDE /* getInfoEngine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = getInfoEngine.m; sourceTree = "<group>"; };
+		02AB873718CD8AE600C68955 /* FirstTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FirstTableViewCell.h; sourceTree = "<group>"; };
+		02AB873818CD8AE600C68955 /* FirstTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FirstTableViewCell.m; sourceTree = "<group>"; };
+		02AB873A18CD974200C68955 /* firstCellIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = firstCellIcon.png; sourceTree = "<group>"; };
+		02AB873B18CD974200C68955 /* firstCellIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "firstCellIcon@2x.png"; sourceTree = "<group>"; };
 		02D945F418C8432F0091B6FE /* user@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "user@2x.png"; sourceTree = "<group>"; };
 		02D945F518C8432F0091B6FE /* user.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = user.png; sourceTree = "<group>"; };
 		02D945F618C8432F0091B6FE /* magnify@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "magnify@2x.png"; sourceTree = "<group>"; };
@@ -176,8 +183,7 @@
 				02A70B6D18B71170009C4CDE /* BrowserViewController.m */,
 				021129BF18B301320099F31F /* SecondViewController.h */,
 				021129C018B301320099F31F /* SecondViewController.m */,
-				02F5AEFC18BC2C2F00E5AE3B /* TableViewCell.h */,
-				02F5AEFD18BC2C2F00E5AE3B /* TableViewCell.m */,
+				02AB873E18CD9B9D00C68955 /* Cells */,
 				021129C218B301320099F31F /* Images.xcassets */,
 				021129AE18B301320099F31F /* Supporting Files */,
 			);
@@ -226,9 +232,22 @@
 			name = NetworkEngine;
 			sourceTree = "<group>";
 		};
+		02AB873E18CD9B9D00C68955 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				02F5AEFC18BC2C2F00E5AE3B /* TableViewCell.h */,
+				02F5AEFD18BC2C2F00E5AE3B /* TableViewCell.m */,
+				02AB873718CD8AE600C68955 /* FirstTableViewCell.h */,
+				02AB873818CD8AE600C68955 /* FirstTableViewCell.m */,
+			);
+			name = Cells;
+			sourceTree = "<group>";
+		};
 		02D945F318C843200091B6FE /* Icons */ = {
 			isa = PBXGroup;
 			children = (
+				02AB873A18CD974200C68955 /* firstCellIcon.png */,
+				02AB873B18CD974200C68955 /* firstCellIcon@2x.png */,
 				02D9462C18C858DD0091B6FE /* book-icon.png */,
 				02D9462D18C858DD0091B6FE /* book-icon@2x.png */,
 				02D9461C18C8559B0091B6FE /* directory-icon.png */,
@@ -347,6 +366,7 @@
 				021129C318B301320099F31F /* Images.xcassets in Resources */,
 				021129B218B301320099F31F /* InfoPlist.strings in Resources */,
 				02D945F918C8432F0091B6FE /* user.png in Resources */,
+				02AB873C18CD974200C68955 /* firstCellIcon.png in Resources */,
 				02D9462F18C858DD0091B6FE /* book-icon@2x.png in Resources */,
 				021129BB18B301320099F31F /* Main.storyboard in Resources */,
 				02D945FB18C8432F0091B6FE /* magnify.png in Resources */,
@@ -355,6 +375,7 @@
 				02417AE218C0021200A8261E /* source-sans-proSemibold.ttf in Resources */,
 				023BDAEE18BEF87900D49862 /* placeholder.png in Resources */,
 				02D9461F18C8559B0091B6FE /* directory-icon@2x.png in Resources */,
+				02AB873D18CD974200C68955 /* firstCellIcon@2x.png in Resources */,
 				02417AE318C0021800A8261E /* SourceSansPro-Bold.ttf in Resources */,
 				02D945F818C8432F0091B6FE /* user@2x.png in Resources */,
 			);
@@ -410,6 +431,7 @@
 			files = (
 				021129C118B301320099F31F /* SecondViewController.m in Sources */,
 				02E0983318BD983300DF64F7 /* UIView+FLKAutoLayout.m in Sources */,
+				02AB873918CD8AE600C68955 /* FirstTableViewCell.m in Sources */,
 				02E0983218BD983300DF64F7 /* FLKAutoLayoutPredicateList.m in Sources */,
 				02F5AEFE18BC2C2F00E5AE3B /* TableViewCell.m in Sources */,
 				02E0983418BD983300DF64F7 /* UIView+FLKAutoLayoutPredicate.m in Sources */,
