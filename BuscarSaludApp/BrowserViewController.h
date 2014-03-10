@@ -19,5 +19,9 @@
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *tableBottomContstraint;
 @property (nonatomic, strong) NSDictionary *doctorsStatic;
 - (IBAction)loadMoreResults:(id)sender;
+@property (weak, nonatomic) IBOutlet UIButton *searchButton;
+@property (weak, nonatomic) IBOutlet UIButton *doctorsButton;
+@property (strong, nonatomic) IBOutlet UIView *firstCellBackground;
+
 
 @end

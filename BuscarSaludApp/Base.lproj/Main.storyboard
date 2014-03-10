@@ -27,7 +27,7 @@
             </objects>
             <point key="canvasLocation" x="670" y="-172"/>
         </scene>
-        <!--Browser View Controller - Directorio Médico-->
+        <!--Browser View Controller-->
         <scene sceneID="1UA-zI-k9e">
             <objects>
                 <viewController id="j6Z-ge-T1f" customClass="BrowserViewController" sceneMemberID="viewController">
@@ -44,7 +44,7 @@
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="CellIdentifier" id="G9r-rN-rBL" customClass="TableViewCell">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="G9r-rN-rBL" customClass="TableViewCell">
                                         <rect key="frame" x="0.0" y="22" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="G9r-rN-rBL" id="7bG-7O-AV7">
@@ -88,7 +88,7 @@
                         </constraints>
                     </view>
                     <toolbarItems/>
-                    <navigationItem key="navigationItem" title="Directorio Médico" id="b7k-LF-PJj">
+                    <navigationItem key="navigationItem" id="b7k-LF-PJj">
                         <barButtonItem key="leftBarButtonItem" id="Nl4-ek-lNo">
                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="kkf-cy-Yk9">
                                 <rect key="frame" x="16" y="10" width="22" height="24"/>
@@ -115,6 +115,8 @@
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="doctorsButton" destination="LPE-iW-HIR" id="6Gt-9I-sje"/>
+                        <outlet property="searchButton" destination="kkf-cy-Yk9" id="R2C-zd-dI8"/>
                         <outlet property="tableTopConstraint" destination="YuX-uU-j35" id="DhS-q1-3lo"/>
                         <outlet property="tableView" destination="5Mc-jP-flw" id="EAK-yN-hW7"/>
                     </connections>
