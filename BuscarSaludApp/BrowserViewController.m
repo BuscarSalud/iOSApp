@@ -196,7 +196,7 @@ static NSString *FirstCellIdentifier = @"FirstCell";
                 /*for (NSMutableArray *doctors in tempDoctors){
                     [doctorsList addObject:doctors];
                 }*/
-                NSLog(@"New list count = %d", [doctorsList count]);
+                NSLog(@"New list count = %lu", (unsigned long)[doctorsList count]);
                 NSLog(@"New full list of doctors = %@", doctorsList);
                 isInsertingRow = YES;
                 [self.tableView reloadData];
@@ -269,18 +269,34 @@ static NSString *FirstCellIdentifier = @"FirstCell";
         }else{
             TableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
             //NSString *doctor = [NSString stringWithFormat:@"doctor%d",indexPath.row];
+                        
             
-            NSLog(@"docs %d", [doctorsList count]);
-            cell.nameLabel.text = [[doctorsList objectAtIndex:indexPath.row-1] objectForKey:@"nombre"];
+            NSString *nameText = [[doctorsList objectAtIndex:indexPath.row-1] objectForKey:@"nombre"];
+            NSMutableAttributedString *nameAttributedText = [[NSMutableAttributedString alloc] initWithString:nameText];
+            NSMutableParagraphStyle *nameParagraphStyle = [[NSMutableParagraphStyle alloc] init];
+            [nameParagraphStyle setLineSpacing:0.0f];
+            [nameAttributedText addAttribute:NSParagraphStyleAttributeName value:nameParagraphStyle range:NSMakeRange(0, nameText.length)];
+            cell.nameLabel.attributedText = nameAttributedText;
+            
+            NSString *summaryText = [[doctorsList objectAtIndex:indexPath.row-1] objectForKey:@"extracto"];
+            if ([summaryText isEqualToString:@""]) {
+                //NSLog(@"Summarey empty");
+                cell.summaryLabel.text = summaryText;
+            }else{
+                //NSLog(@"Summarey = %@", summaryText);
+                NSMutableAttributedString *sumarryAttributedText = [[NSMutableAttributedString alloc] initWithString:summaryText];
+                NSMutableParagraphStyle *summaryParagraphStyle = [[NSMutableParagraphStyle alloc] init];
+                [summaryParagraphStyle setLineSpacing:0.0f];
+                [sumarryAttributedText addAttribute:NSParagraphStyleAttributeName value:summaryParagraphStyle range:NSMakeRange(0, summaryText.length)];
+                cell.summaryLabel.attributedText = sumarryAttributedText;
+            }
+            
             cell.phonelabel.text = [[doctorsList objectAtIndex:indexPath.row-1] objectForKey:@"telefono"];
-            cell.streetLabel.text = [[doctorsList objectAtIndex:indexPath.row-1] objectForKey:@"calle"];
-            cell.coloniaLabel.text = [[doctorsList objectAtIndex:indexPath.row-1] objectForKey:@"colonia"];
-            cell.cityLabel.text = [[doctorsList objectAtIndex:indexPath.row-1] objectForKey:@"ciudad"];
-            cell.titleLabel.text = [[doctorsList objectAtIndex:indexPath.row-1] objectForKey:@"titulo"];
-            cell.schoolLabel.text = [[doctorsList objectAtIndex:indexPath.row-1] objectForKey:@"escuela"];
             
-            NSString *pointsText = [NSString stringWithFormat:@"%@ puntos", [[doctorsList objectAtIndex:indexPath.row-1] objectForKey:@"puntos"]];
-            cell.pointsLabel.text = pointsText;
+            cell.streetLabel.text = [[doctorsList objectAtIndex:indexPath.row-1] objectForKey:@"calle"];
+            
+            cell.coloniaLabel.text = [[doctorsList objectAtIndex:indexPath.row-1] objectForKey:@"colonia"];
+            
             
             if ([[[doctorsList objectAtIndex:indexPath.row-1] objectForKey:@"img"] isKindOfClass:[NSNull class]]){
                 [cell.photoImageView setImage:[UIImage imageNamed:@"placeholder.png"]];
@@ -289,8 +305,21 @@ static NSString *FirstCellIdentifier = @"FirstCell";
                 [cell.photoImageView setImageWithURL:[NSURL URLWithString:photo] placeholderImage:[UIImage imageNamed:@"placeholder.png"] usingActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
             }
             
+            NSString *pointsText = [NSString stringWithFormat:@"%@ puntos", [[doctorsList objectAtIndex:indexPath.row-1] objectForKey:@"puntos"]];
+            cell.pointsLabel.text = pointsText;
+
+            cell.cityLabel.text = [[doctorsList objectAtIndex:indexPath.row-1] objectForKey:@"ciudad"];
+        
+            cell.titleLabel.text = [[doctorsList objectAtIndex:indexPath.row-1] objectForKey:@"titulo"];
+        
+            cell.schoolLabel.text = [[doctorsList objectAtIndex:indexPath.row-1] objectForKey:@"escuela"];
             
-            /*
+        /*
+            
+            */
+            
+            
+            /* /////////////// NO
              cell.nameLabel.text = [[doctorsList objectForKey:doctor] objectForKey:@"nombre"];
              cell.phonelabel.text = [[doctorsList objectForKey:doctor] objectForKey:@"telefono"];
              cell.streetLabel.text = [[doctorsList objectForKey:doctor] objectForKey:@"calle"];
@@ -310,17 +339,16 @@ static NSString *FirstCellIdentifier = @"FirstCell";
              }
              
              NSString *summaryText = [[doctorsList objectForKey:doctor] objectForKey:@"extracto"];
-             
+             /////////////////// NO
              */
             
+            /*
             
-            NSString *summaryText = [[doctorsList objectAtIndex:indexPath.row-1] objectForKey:@"extracto"];
             
-            NSMutableAttributedString *bodyAttributedText = [[NSMutableAttributedString alloc] initWithString:summaryText];
-            NSMutableParagraphStyle *bodyParagraphStyle = [[NSMutableParagraphStyle alloc] init];
-            [bodyParagraphStyle setLineSpacing:0.0f];
-            [bodyAttributedText addAttribute:NSParagraphStyleAttributeName value:bodyParagraphStyle range:NSMakeRange(0, summaryText.length)];
-            cell.summaryLabel.attributedText = bodyAttributedText;
+            */
+            
+            
+            
             
             [cell updateFonts];
             
@@ -358,25 +386,12 @@ static NSString *FirstCellIdentifier = @"FirstCell";
                 TableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
                 //NSString *doctor = [NSString stringWithFormat:@"doctor%d",indexPath.row];
                 
-                cell.nameLabel.text = [[doctorsList objectAtIndex:indexPath.row] objectForKey:@"nombre"];
-                cell.phonelabel.text = [[doctorsList objectAtIndex:indexPath.row] objectForKey:@"telefono"];
-                cell.streetLabel.text = [[doctorsList objectAtIndex:indexPath.row] objectForKey:@"calle"];
-                cell.coloniaLabel.text = [[doctorsList objectAtIndex:indexPath.row] objectForKey:@"colonia"];
-                cell.cityLabel.text = [[doctorsList objectAtIndex:indexPath.row] objectForKey:@"ciudad"];
-                cell.titleLabel.text = [[doctorsList objectAtIndex:indexPath.row] objectForKey:@"titulo"];
-                cell.schoolLabel.text = [[doctorsList objectAtIndex:indexPath.row] objectForKey:@"escuela"];
-                
-                NSString *pointsText = [NSString stringWithFormat:@"%@ puntos", [[doctorsList objectAtIndex:indexPath.row] objectForKey:@"puntos"]];
-                cell.pointsLabel.text = pointsText;
-                
-                if ([[[doctorsList objectAtIndex:indexPath.row] objectForKey:@"img"] isKindOfClass:[NSNull class]]){
-                    [cell.photoImageView setImage:[UIImage imageNamed:@"placeholder.png"]];
-                }else{
-                    NSString *photo = [[doctorsList objectAtIndex:indexPath.row] objectForKey:@"img"];
-                    [cell.photoImageView setImageWithURL:[NSURL URLWithString:photo] placeholderImage:[UIImage imageNamed:@"placeholder.png"] usingActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
-                }
-                
-                
+                NSString *nameText = [[doctorsList objectAtIndex:indexPath.row-1] objectForKey:@"nombre"];
+                NSMutableAttributedString *nameAttributedText = [[NSMutableAttributedString alloc] initWithString:nameText];
+                NSMutableParagraphStyle *nameParagraphStyle = [[NSMutableParagraphStyle alloc] init];
+                [nameParagraphStyle setLineSpacing:0.0f];
+                [nameAttributedText addAttribute:NSParagraphStyleAttributeName value:nameParagraphStyle range:NSMakeRange(0, nameText.length)];
+                cell.nameLabel.attributedText = nameAttributedText;
                 
                 NSString *summaryText = [[doctorsList objectAtIndex:indexPath.row] objectForKey:@"extracto"];
                 
@@ -385,6 +400,38 @@ static NSString *FirstCellIdentifier = @"FirstCell";
                 [bodyParagraphStyle setLineSpacing:0.0f];
                 [bodyAttributedText addAttribute:NSParagraphStyleAttributeName value:bodyParagraphStyle range:NSMakeRange(0, summaryText.length)];
                 cell.summaryLabel.attributedText = bodyAttributedText;
+                
+                cell.phonelabel.text = [[doctorsList objectAtIndex:indexPath.row] objectForKey:@"telefono"];
+                
+                cell.streetLabel.text = [[doctorsList objectAtIndex:indexPath.row] objectForKey:@"calle"];
+                
+                cell.coloniaLabel.text = [[doctorsList objectAtIndex:indexPath.row] objectForKey:@"colonia"];
+                
+                
+                if ([[[doctorsList objectAtIndex:indexPath.row] objectForKey:@"img"] isKindOfClass:[NSNull class]]){
+                    [cell.photoImageView setImage:[UIImage imageNamed:@"placeholder.png"]];
+                }else{
+                    NSString *photo = [[doctorsList objectAtIndex:indexPath.row] objectForKey:@"img"];
+                    [cell.photoImageView setImageWithURL:[NSURL URLWithString:photo] placeholderImage:[UIImage imageNamed:@"placeholder.png"] usingActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
+                }
+                
+                NSString *pointsText = [NSString stringWithFormat:@"%@ puntos", [[doctorsList objectAtIndex:indexPath.row] objectForKey:@"puntos"]];
+                cell.pointsLabel.text = pointsText;
+              
+                cell.cityLabel.text = [[doctorsList objectAtIndex:indexPath.row] objectForKey:@"ciudad"];
+            
+                cell.titleLabel.text = [[doctorsList objectAtIndex:indexPath.row] objectForKey:@"titulo"];
+            
+                cell.schoolLabel.text = [[doctorsList objectAtIndex:indexPath.row] objectForKey:@"escuela"];
+            /*
+             
+                
+             
+                
+                
+                
+             
+                */
                 
                 
                 

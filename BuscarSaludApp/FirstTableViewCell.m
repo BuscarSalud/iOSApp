@@ -98,7 +98,7 @@
     // layoutSubviews on the contentView, which causes all the UILabels to have a frame of CGRectZero.
     [self.contentView layoutSubviews];
     
-    self.nameLabel.preferredMaxLayoutWidth = CGRectGetWidth(self.nameLabel.frame);
+    //self.nameLabel.preferredMaxLayoutWidth = CGRectGetWidth(self.nameLabel.frame);
 }
 
 - (void)updateFonts
