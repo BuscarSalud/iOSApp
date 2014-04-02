@@ -10,7 +10,7 @@
 #import <MapKit/MapKit.h>
 #import "getInfoEngine.h"
 
-@interface BrowserViewController : UIViewController<CLLocationManagerDelegate, UITableViewDataSource, UITableViewDelegate>
+@interface BrowserViewController : UIViewController<CLLocationManagerDelegate, UITableViewDataSource, UITableViewDelegate,UITextFieldDelegate>
 
 @property (nonatomic, strong) NSNumber *latitude;
 @property (nonatomic, strong) NSNumber *longitude;
@@ -18,10 +18,11 @@
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *tableTopConstraint;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *tableBottomContstraint;
 @property (nonatomic, strong) NSDictionary *doctorsStatic;
-- (IBAction)loadMoreResults:(id)sender;
 @property (weak, nonatomic) IBOutlet UIButton *searchButton;
 @property (weak, nonatomic) IBOutlet UIButton *doctorsButton;
 @property (strong, nonatomic) IBOutlet UIView *firstCellBackground;
 
 
+- (IBAction)searchButton:(id)sender;
+- (IBAction)loadMoreResults:(id)sender;
 @end

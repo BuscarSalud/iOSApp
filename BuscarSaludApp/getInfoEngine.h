@@ -13,4 +13,5 @@
 typedef void (^InfoResponseBlock)(NSMutableArray* infoDictionary);
 
 -(void) getDoctorsList:(NSMutableDictionary*) params completionHandler:(InfoResponseBlock) docsBlock errorHandler:(MKNKErrorBlock) errorBlock;
+-(void) searchDoctors:(NSMutableDictionary*) params completionHandler:(InfoResponseBlock) docsBlock errorHandler:(MKNKErrorBlock) errorBlock;
 @end

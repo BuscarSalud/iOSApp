@@ -28,4 +28,22 @@
     
 }
 
+-(void) searchDoctors:(NSMutableDictionary *)params completionHandler:(InfoResponseBlock)docsBlock errorHandler:(MKNKErrorBlock)errorBlock
+{
+    NSLog(@"%@", params);
+    MKNetworkOperation *op = [self operationWithPath:@"search.php" params:params httpMethod:@"GET" ssl:NO];
+    
+    [op addCompletionHandler:^(MKNetworkOperation *completedOperation) {
+        [completedOperation responseJSONWithCompletionHandler:^(id jsonObject) {
+            docsBlock(jsonObject);
+        }];
+    } errorHandler:^(MKNetworkOperation *errorOp, NSError* error) {
+        
+        errorBlock(error);
+    }];
+    
+    [self enqueueOperation:op];
+    
+}
+
 @end
