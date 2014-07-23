@@ -33,6 +33,9 @@
 		02AB873918CD8AE600C68955 /* FirstTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 02AB873818CD8AE600C68955 /* FirstTableViewCell.m */; };
 		02AB873C18CD974200C68955 /* firstCellIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 02AB873A18CD974200C68955 /* firstCellIcon.png */; };
 		02AB873D18CD974200C68955 /* firstCellIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 02AB873B18CD974200C68955 /* firstCellIcon@2x.png */; };
+		02BCB48B18FE1D1D004C147D /* State.m in Sources */ = {isa = PBXBuildFile; fileRef = 02BCB48A18FE1D1D004C147D /* State.m */; };
+		02BCB48E18FE1DF6004C147D /* Specialty.m in Sources */ = {isa = PBXBuildFile; fileRef = 02BCB48D18FE1DF6004C147D /* Specialty.m */; };
+		02BCB49118FE2CCA004C147D /* FiltersTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 02BCB49018FE2CCA004C147D /* FiltersTableViewCell.m */; };
 		02D945F818C8432F0091B6FE /* user@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 02D945F418C8432F0091B6FE /* user@2x.png */; };
 		02D945F918C8432F0091B6FE /* user.png in Resources */ = {isa = PBXBuildFile; fileRef = 02D945F518C8432F0091B6FE /* user.png */; };
 		02D945FA18C8432F0091B6FE /* magnify@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 02D945F618C8432F0091B6FE /* magnify@2x.png */; };
@@ -44,6 +47,8 @@
 		02E0983218BD983300DF64F7 /* FLKAutoLayoutPredicateList.m in Sources */ = {isa = PBXBuildFile; fileRef = 02E0982D18BD983300DF64F7 /* FLKAutoLayoutPredicateList.m */; };
 		02E0983318BD983300DF64F7 /* UIView+FLKAutoLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 02E0982F18BD983300DF64F7 /* UIView+FLKAutoLayout.m */; };
 		02E0983418BD983300DF64F7 /* UIView+FLKAutoLayoutPredicate.m in Sources */ = {isa = PBXBuildFile; fileRef = 02E0983118BD983300DF64F7 /* UIView+FLKAutoLayoutPredicate.m */; };
+		02EAA6231906019D00CE5206 /* StatesDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = 02EAA6221906019D00CE5206 /* StatesDictionary.m */; };
+		02EAA62619060BC800CE5206 /* CategoriesDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = 02EAA62519060BC800CE5206 /* CategoriesDictionary.m */; };
 		02F5AEFE18BC2C2F00E5AE3B /* TableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 02F5AEFD18BC2C2F00E5AE3B /* TableViewCell.m */; };
 		7A0D7C04568D47B4A3E9581E /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 56E0A1FF1BB04BD9A6224959 /* libPods.a */; };
 /* End PBXBuildFile section */
@@ -86,7 +91,7 @@
 		02547AAC18E9258300D90DBE /* LoadingMoreTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoadingMoreTableViewCell.m; sourceTree = "<group>"; };
 		02A70B6718B70E48009C4CDE /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		02A70B6C18B71170009C4CDE /* BrowserViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrowserViewController.h; sourceTree = "<group>"; };
-		02A70B6D18B71170009C4CDE /* BrowserViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BrowserViewController.m; sourceTree = "<group>"; };
+		02A70B6D18B71170009C4CDE /* BrowserViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 2; lastKnownFileType = sourcecode.c.objc; path = BrowserViewController.m; sourceTree = "<group>"; };
 		02A70B6F18B72075009C4CDE /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		02A70B7218B72975009C4CDE /* getInfoEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = getInfoEngine.h; sourceTree = "<group>"; };
 		02A70B7318B72975009C4CDE /* getInfoEngine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = getInfoEngine.m; sourceTree = "<group>"; };
@@ -94,6 +99,12 @@
 		02AB873818CD8AE600C68955 /* FirstTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FirstTableViewCell.m; sourceTree = "<group>"; };
 		02AB873A18CD974200C68955 /* firstCellIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = firstCellIcon.png; sourceTree = "<group>"; };
 		02AB873B18CD974200C68955 /* firstCellIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "firstCellIcon@2x.png"; sourceTree = "<group>"; };
+		02BCB48918FE1D1D004C147D /* State.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = State.h; sourceTree = "<group>"; };
+		02BCB48A18FE1D1D004C147D /* State.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = State.m; sourceTree = "<group>"; };
+		02BCB48C18FE1DF6004C147D /* Specialty.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Specialty.h; sourceTree = "<group>"; };
+		02BCB48D18FE1DF6004C147D /* Specialty.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Specialty.m; sourceTree = "<group>"; };
+		02BCB48F18FE2CCA004C147D /* FiltersTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FiltersTableViewCell.h; sourceTree = "<group>"; };
+		02BCB49018FE2CCA004C147D /* FiltersTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FiltersTableViewCell.m; sourceTree = "<group>"; };
 		02D945F418C8432F0091B6FE /* user@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "user@2x.png"; sourceTree = "<group>"; };
 		02D945F518C8432F0091B6FE /* user.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = user.png; sourceTree = "<group>"; };
 		02D945F618C8432F0091B6FE /* magnify@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "magnify@2x.png"; sourceTree = "<group>"; };
@@ -108,6 +119,10 @@
 		02E0982F18BD983300DF64F7 /* UIView+FLKAutoLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIView+FLKAutoLayout.m"; path = "../../Stuff/FLKAutoLayout-master/FLKAutoLayout/UIView+FLKAutoLayout.m"; sourceTree = "<group>"; };
 		02E0983018BD983300DF64F7 /* UIView+FLKAutoLayoutPredicate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIView+FLKAutoLayoutPredicate.h"; path = "../../Stuff/FLKAutoLayout-master/FLKAutoLayout/UIView+FLKAutoLayoutPredicate.h"; sourceTree = "<group>"; };
 		02E0983118BD983300DF64F7 /* UIView+FLKAutoLayoutPredicate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIView+FLKAutoLayoutPredicate.m"; path = "../../Stuff/FLKAutoLayout-master/FLKAutoLayout/UIView+FLKAutoLayoutPredicate.m"; sourceTree = "<group>"; };
+		02EAA6211906019D00CE5206 /* StatesDictionary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StatesDictionary.h; sourceTree = "<group>"; };
+		02EAA6221906019D00CE5206 /* StatesDictionary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StatesDictionary.m; sourceTree = "<group>"; };
+		02EAA62419060BC800CE5206 /* CategoriesDictionary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CategoriesDictionary.h; sourceTree = "<group>"; };
+		02EAA62519060BC800CE5206 /* CategoriesDictionary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CategoriesDictionary.m; sourceTree = "<group>"; };
 		02F5AEFC18BC2C2F00E5AE3B /* TableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TableViewCell.h; sourceTree = "<group>"; };
 		02F5AEFD18BC2C2F00E5AE3B /* TableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TableViewCell.m; sourceTree = "<group>"; };
 		56E0A1FF1BB04BD9A6224959 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -189,6 +204,7 @@
 				02AB873E18CD9B9D00C68955 /* Cells */,
 				021129C218B301320099F31F /* Images.xcassets */,
 				021129AE18B301320099F31F /* Supporting Files */,
+				02E460B21907942D003D1365 /* States and Categories */,
 			);
 			path = BuscarSaludApp;
 			sourceTree = "<group>";
@@ -244,6 +260,8 @@
 				02AB873818CD8AE600C68955 /* FirstTableViewCell.m */,
 				02547AAB18E9258300D90DBE /* LoadingMoreTableViewCell.h */,
 				02547AAC18E9258300D90DBE /* LoadingMoreTableViewCell.m */,
+				02BCB48F18FE2CCA004C147D /* FiltersTableViewCell.h */,
+				02BCB49018FE2CCA004C147D /* FiltersTableViewCell.m */,
 			);
 			name = Cells;
 			sourceTree = "<group>";
@@ -276,6 +294,21 @@
 				02E0983118BD983300DF64F7 /* UIView+FLKAutoLayoutPredicate.m */,
 			);
 			name = FLKAutoLayout;
+			sourceTree = "<group>";
+		};
+		02E460B21907942D003D1365 /* States and Categories */ = {
+			isa = PBXGroup;
+			children = (
+				02BCB48918FE1D1D004C147D /* State.h */,
+				02BCB48A18FE1D1D004C147D /* State.m */,
+				02BCB48C18FE1DF6004C147D /* Specialty.h */,
+				02BCB48D18FE1DF6004C147D /* Specialty.m */,
+				02EAA6211906019D00CE5206 /* StatesDictionary.h */,
+				02EAA6221906019D00CE5206 /* StatesDictionary.m */,
+				02EAA62419060BC800CE5206 /* CategoriesDictionary.h */,
+				02EAA62519060BC800CE5206 /* CategoriesDictionary.m */,
+			);
+			name = "States and Categories";
 			sourceTree = "<group>";
 		};
 		02F5AEFF18BC526000E5AE3B /* Fonts */ = {
@@ -436,13 +469,18 @@
 			files = (
 				021129C118B301320099F31F /* SecondViewController.m in Sources */,
 				02E0983318BD983300DF64F7 /* UIView+FLKAutoLayout.m in Sources */,
+				02BCB48E18FE1DF6004C147D /* Specialty.m in Sources */,
 				02AB873918CD8AE600C68955 /* FirstTableViewCell.m in Sources */,
 				02E0983218BD983300DF64F7 /* FLKAutoLayoutPredicateList.m in Sources */,
 				02F5AEFE18BC2C2F00E5AE3B /* TableViewCell.m in Sources */,
 				02E0983418BD983300DF64F7 /* UIView+FLKAutoLayoutPredicate.m in Sources */,
+				02EAA6231906019D00CE5206 /* StatesDictionary.m in Sources */,
+				02BCB49118FE2CCA004C147D /* FiltersTableViewCell.m in Sources */,
 				02A70B6E18B71170009C4CDE /* BrowserViewController.m in Sources */,
+				02BCB48B18FE1D1D004C147D /* State.m in Sources */,
 				02A70B7418B72975009C4CDE /* getInfoEngine.m in Sources */,
 				02547AAD18E9258300D90DBE /* LoadingMoreTableViewCell.m in Sources */,
+				02EAA62619060BC800CE5206 /* CategoriesDictionary.m in Sources */,
 				021129B818B301320099F31F /* AppDelegate.m in Sources */,
 				021129B418B301320099F31F /* main.m in Sources */,
 			);

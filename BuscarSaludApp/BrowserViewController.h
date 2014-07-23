@@ -21,8 +21,12 @@
 @property (weak, nonatomic) IBOutlet UIButton *searchButton;
 @property (weak, nonatomic) IBOutlet UIButton *doctorsButton;
 @property (strong, nonatomic) IBOutlet UIView *firstCellBackground;
-
+@property (retain, nonatomic)NSDictionary *specialtiesDictionary;
+@property (retain, nonatomic)NSDictionary *statesDictionary;
+@property (retain, nonatomic)NSDictionary *previousSpecialtiesDictionary;
+@property (retain, nonatomic)NSDictionary *previousStatesDictionary;
 
 - (IBAction)searchButton:(id)sender;
 - (IBAction)loadMoreResults:(id)sender;
+- (void)showFilterOptionsMethod:(id)sender;
 @end
